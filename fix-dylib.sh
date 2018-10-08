@@ -1,7 +1,9 @@
 #! /bin/bash
 
 #curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O
-hdiutil attach ~/Downloads/gimp-2.10.6-x86_64.dmg >& attach.log
+hdiutil attach gimp-2.10.6-x86_64.dmg >& attach.log
+
+#hdiutil attach ~/Downloads/gimp-2.10.6-x86_64.dmg >& attach.log
 MOUNT_POINT=$(cat attach.log | tr "\t" "\n" | tail -n 1)
 echo "MOUNT_POINT: $MOUNT_POINT"
 

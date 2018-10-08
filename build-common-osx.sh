@@ -2,10 +2,10 @@
 
 mkdir -p build && cd build
 
-#brew reinstall \
-#	little-cms2 openexr gettext intltool json-c \
-#	json-glib glib-networking gexiv2 librsvg \
-#	poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
+brew reinstall \
+	little-cms2 openexr gettext intltool json-c \
+	json-glib glib-networking gexiv2 librsvg \
+	poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
 
 
 ls /usr/local/opt
