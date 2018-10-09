@@ -1,20 +1,18 @@
 language: generic
+os:
+  - linux
+  - osx
+
+env:
+  - TARGET_PLUGIN=PhFGimp
+  - TARGET_PLUGIN=GMIC
 
 #env:
 matrix:
-    allow_failures:
-        - env: TARGET_SYSTEM=OSX
-    include:
-        - os: osx
-          cache: ccache
-          osx_image: xcode9.4
-          env: 
-          - TARGET_SYSTEM=OSX
-            TARGET_PLUGIN=PhFGimp
-            TARGET_PLUGIN=GMIC
-            JOBS="`sysctl -n hw.ncpu`"
-            MACOSX_DEPLOYMENT_TARGET=10.8
-            HOMEBREW_NO_AUTO_UPDATE=1
+  include:
+    - os: osx
+      osx_image: xcode9.4
+      env: MACOSX_DEPLOYMENT_TARGET=10.8
           before_script:
             - source ./environment.sh
             - brew update
