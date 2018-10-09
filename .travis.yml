@@ -11,6 +11,7 @@ matrix:
           env: 
           - TARGET_SYSTEM=OSX
             TARGET_PLUGIN=PhFGimp
+            TARGET_PLUGIN=GMIC
             JOBS="`sysctl -n hw.ncpu`"
             MACOSX_DEPLOYMENT_TARGET=10.8
             HOMEBREW_NO_AUTO_UPDATE=1
