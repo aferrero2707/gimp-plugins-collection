@@ -1,6 +1,7 @@
 #! /bin/bash
 
-brew install fftw curl qt55
+brew install fftw curl qt || exit 1
+brew link qt --force || exit 1
 
 cd build
 if [ ! -e gmic-qt ]; then
