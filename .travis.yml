@@ -21,9 +21,10 @@ matrix:
             - bash ./build-common-osx.sh
             - bash ./${TARGET_PLUGIN}/build-osx.sh
             - bash ./fix-dylib.sh
-            - cd plugins/fixed
-            - tar czvf ../../${TARGET_PLUGIN}-GIMP-2.10.6-OSX.tgz ??*
-            - cd ../..
+            - ls plugins-fixed
+            - cd plugins-fixed
+            - tar czvf ../${TARGET_PLUGIN}-GIMP-2.10.6-OSX.tgz ??*
+            - cd ..
             - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
             - bash  ./upload_rotate.sh "continuous" *.tgz
 branches:
