@@ -1,0 +1,21 @@
+*** gimp/icons/Makefile.am	Mon Oct  1 09:14:52 2018
+--- gimp-new//icons/Makefile.am	Tue Oct  2 10:59:03 2018
+***************
+*** 1,8 ****
+  SUBDIRS = \
+  	Color		\
+  	Legacy		\
+! 	Symbolic	\
+! 	Symbolic-Inverted
+  
+  iconsdir = $(gimpdatadir)/icons/hicolor
+  
+--- 1,8 ----
+  SUBDIRS = \
+  	Color		\
+  	Legacy		\
+! 	Symbolic	
+! #	Symbolic-Inverted
+  
+  iconsdir = $(gimpdatadir)/icons/hicolor
+  
