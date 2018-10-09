@@ -1,7 +1,9 @@
 #! /bin/bash
 
-#curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O
-hdiutil attach gimp-2.10.6-x86_64.dmg >& attach.log
+PLUGIN="$1"
+
+curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O || exit 1
+hdiutil attach gimp-2.10.6-x86_64.dmg >& attach.log || exit 1
 
 #hdiutil attach ~/Downloads/gimp-2.10.6-x86_64.dmg >& attach.log
 MOUNT_POINT=$(cat attach.log | tr "\t" "\n" | tail -n 1)
@@ -87,6 +89,7 @@ done
 # fill the directory list in @rpath 	
 install_name_tool -add_rpath "@loader_path/../../.." "$F2"
 install_name_tool -add_rpath "@loader_path/../../../../../Frameworks" "$F2"
+install_name_tool -add_rpath "@loader_path/$PLUGIN/lib" "$F2"
 #install_name_tool -add_rpath "/tmp/McGimp-2.10.6/Contents/Resources/lib" "../../PhFGimp/build/$f"
 #install_name_tool -add_rpath "/tmp/lib-std" "../../PhFGimp/build/$f"
 
