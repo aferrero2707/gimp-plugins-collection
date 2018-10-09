@@ -1,7 +1,7 @@
 #! /bin/bash
 
-export HB_PREFIX="$HOME/homebrew"
-#export HB_PREFIX="/usr/local"
+#export HB_PREFIX="$HOME/homebrew"
+export HB_PREFIX="/usr/local"
 export PREFIX=$(pwd)/inst
 
 export PATH="${HB_PREFIX}/opt/gettext/bin:${HB_PREFIX}/opt/jpeg-turbo:${HB_PREFIX}/bin:$PATH"
