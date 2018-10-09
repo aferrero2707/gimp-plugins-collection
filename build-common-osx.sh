@@ -54,7 +54,7 @@ fi
 
 if [ ! -e gimp ]; then
 	(git clone -b GIMP_2_10_6 http://git.gnome.org/browse/gimp) || exit 1
-	(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --disable-python --enable-sse=no --prefix=${PREFIX} && make -j 3 V=1 install) || exit 1
+	(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --disable-python --enable-sse=no --prefix=${PREFIX} && make -j 1 install) || exit 1
 #(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./configure --disable-gtk-doc --enable-sse=no --prefix=${PREFIX} && make -j 1 install) || exit 1
 fi
 
