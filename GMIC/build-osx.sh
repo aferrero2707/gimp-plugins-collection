@@ -21,7 +21,7 @@ if [ ! -e gmic-clone ]; then
 	make -C gmic-clone/src CImg.h gmic_stdlib.h || exit 1
 fi
 
-qmake QMAKE_CFLAGS+="${CFLAGS} -O2" QMAKE_CXXFLAGS+="${CXXFLAGS} -O2" QMAKE_LFLAGS+="${LDFLAGS} -lX11 " CONFIG+=Release HOST=gimp GMIC_PATH=gmic-clone/src || exit 1
+qmake QMAKE_CFLAGS+="${CFLAGS} -O2" QMAKE_CXXFLAGS+="${CXXFLAGS} -O2" QMAKE_LFLAGS+="${LDFLAGS} -L/usr/X11/lib -lX11 " CONFIG+=Release HOST=gimp GMIC_PATH=gmic-clone/src || exit 1
 (make && make install) || exit 1
 
 cp -a gmic_gimp_qt.app/Contents/MacOS/gmic_gimp_qt ../../plugins
