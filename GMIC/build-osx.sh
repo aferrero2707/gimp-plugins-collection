@@ -1,5 +1,6 @@
 #! /bin/bash
 
+brew cask uninstall oclint
 brew install fftw curl qt || exit 1
 #brew link qt --force || exit 1
 
