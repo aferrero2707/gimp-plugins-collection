@@ -18,8 +18,12 @@ echo "TARGET: $TARGET"
 
 #exit
 
+rm -rf plugins-fixed
 mkdir -p plugins-fixed
 cd plugins
+
+echo "Contents of plugins folder:"
+ls -l
 
 for F in ./??*; do
 
@@ -31,6 +35,10 @@ echo "NDY: $NDY"
 #F2="$TARGET/Contents/Resources/lib/gimp/2.0/plug-ins/$f"
 F2="../plugins-fixed/$F"
 cp -a "$F" "$F2"
+
+#../build/macdylibbundler/dylibbundler -b -x "$F2" -d "../plugins-fixed/$PLUGIN/lib" --create-dir -p "@loader_path/$PLUGIN/lib"
+#continue
+#cp -a "$F" "$F2"
 
 # remove all the LC_ADD_DYLIB commands
 I=$NDY

@@ -1,9 +1,9 @@
 #! /bin/bash
 
 mkdir -p build && cd build
-
-brew reinstall little-cms2 openexr gettext intltool json-c json-glib glib-networking gexiv2 librsvg poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
-
+if [ -n "$TRAVIS" ]; then
+	brew reinstall little-cms2 openexr gettext intltool json-c json-glib glib-networking gexiv2 librsvg poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
+fi
 
 ls /usr/local/opt
 #ls /usr/local/opt/gettext/bin

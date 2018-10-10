@@ -2,7 +2,8 @@
 
 TARGET_PLUGIN=$1
 
-source ./environment.sh
+export HB_PREFIX="$HOME/homebrew"
+source ./environment-osx.sh
 #brew update
 mkdir plugins
 bash ./build-common-osx.sh || exit 1

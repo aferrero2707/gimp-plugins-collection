@@ -13,6 +13,7 @@ export MOUNT_POINT=$(cat attach.log | tr "\t" "\n" | tail -n 1)
 export GIMP_BUNDLE="$(find "$MOUNT_POINT" -depth 1 -name "*.app" | tail -n 1)"
 rm -f /tmp/gimp.app
 ln -s "$GIMP_BUNDLE" /tmp/gimp.app || exit 1
+ls -l /tmp/gimp.app/
 bash ./fix-dylib.sh ${TARGET_PLUGIN} "$(basename "$GIMP_BUNDLE")" || exit 1
 ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
