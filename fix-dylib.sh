@@ -36,9 +36,19 @@ echo "NDY: $NDY"
 F2="../plugins-fixed/$F"
 cp -a "$F" "$F2"
 
-#../build/macdylibbundler/dylibbundler -b -x "$F2" -d "../plugins-fixed/$PLUGIN/lib" --create-dir -p "@loader_path/$PLUGIN/lib"
+../build/macdylibbundler/dylibbundler -b -x "$F2" -d "../plugins-fixed/$PLUGIN/lib" --create-dir -p "@rpath"
+for DYLIB in "../plugins-fixed/$PLUGIN/lib/"*.dylib; do
+	PREFIX=$(basename "$DYLIB" | cut -d'.' -f 1)
+	echo "PREFIX: $PREFIX"
+	DYLIB2=$(find "$TARGET/Contents" -name "$PREFIX"*)
+	if [ -n "$DYLIB2" ]; then
+		echo "rm -f \"$DYLIB\""
+		rm -f "$DYLIB"
+	fi
+done
+
 #continue
-#cp -a "$F" "$F2"
+cp -a "$F" "$F2"
 
 # remove all the LC_ADD_DYLIB commands
 I=$NDY
