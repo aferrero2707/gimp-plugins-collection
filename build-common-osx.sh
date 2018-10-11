@@ -33,6 +33,8 @@ which xgettext
 
 #exit
 
+if [ "x" = "y" ]; then
+
 if [ ! -e libmypaint-1.3.0 ]; then
 	curl -L https://github.com/mypaint/libmypaint/releases/download/v1.3.0/libmypaint-1.3.0.tar.xz -O
 	tar xvf libmypaint-1.3.0.tar.xz
@@ -63,6 +65,10 @@ if [ ! -e gimp ]; then
 	(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --disable-python --enable-sse=no --prefix=${PREFIX} && make -j 3 install) || exit 1
 #(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./configure --disable-gtk-doc --enable-sse=no --prefix=${PREFIX} && make -j 1 install) || exit 1
 fi
+
+fi
+
+
 
 if [ ! -e optool ]; then
 	git clone https://github.com/alexzielenski/optool.git || exit 1
