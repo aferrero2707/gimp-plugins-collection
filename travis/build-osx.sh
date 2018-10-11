@@ -4,7 +4,7 @@ source ./environment-osx.sh
 brew update
 mkdir plugins || exit 1
 bash ./build-common-osx.sh || exit 1
-exit
+#exit
 bash ./${TARGET_PLUGIN}/build-osx.sh || exit 1
 
 rm -rf plugins-fixed
