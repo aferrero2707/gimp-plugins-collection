@@ -20,8 +20,6 @@ which libtool
 
 mkdir -p ${PREFIX}/share/aclocal/
 
-exit 0
-
 
 #if [ ! -e gettext-0.19.8 ]; then
 #	curl -L  https://ftp.gnu.org/gnu/gettext/gettext-0.19.8.tar.gz -O	 || exit 1
