@@ -3,9 +3,9 @@
 source ./environment-osx.sh
 brew update
 mkdir plugins || exit 1
-#bash ./build-common-osx.sh || exit 1
+bash ./build-common-osx.sh || exit 1
 bash ./${TARGET_PLUGIN}/build-osx.sh || exit 1
-exit
+#exit
 
 rm -rf plugins-fixed
 curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O || exit 1
