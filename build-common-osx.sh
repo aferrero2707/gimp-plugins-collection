@@ -1,5 +1,8 @@
 #! /bin/bash
 
+wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/osx-cache.tgz || exit 1
+tar xvf osx-cache.tgz || exit 1
+
 mkdir -p build && cd build
 if [ -n "$TRAVIS" ]; then
 	brew reinstall little-cms2 openexr gettext intltool json-c json-glib glib-networking gexiv2 librsvg poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
@@ -16,6 +19,8 @@ which libtool
 #exit
 
 mkdir -p ${PREFIX}/share/aclocal/
+
+exit 0
 
 
 #if [ ! -e gettext-0.19.8 ]; then
