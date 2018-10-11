@@ -1,7 +1,7 @@
 #! /bin/bash
 
 source ./environment-osx.sh
-brew update && brew upgrade
+brew update || exit 1
 bash ./build-common-osx.sh || exit 1
 tar czf osx-cache.tgz inst
 
