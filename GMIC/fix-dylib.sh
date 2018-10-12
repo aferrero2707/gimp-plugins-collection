@@ -32,7 +32,7 @@ while [ $I -le $NDY ]; do
 	echo "PREFIX: $PREFIX"
 	
 	# check if this is a Qt framework
-	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '/usr/local/opt/qt')
+	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '/usr/local/')
 	if [ -n "$TEST" ]; then
 		DYLIBNAME="$(basename "$DYLIB")"
 		mkdir -p "../plugins-fixed/$PLUGIN/Frameworks/" || exit 1
@@ -43,6 +43,7 @@ while [ $I -le $NDY ]; do
 		echo "install_name_tool -change \"$DYLIB\" \"$DYLIB2\" \"$F2\""
 		install_name_tool -change "$DYLIB" "$DYLIB2" "$F2"
 
+		echo "Patching $../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
 		DYLIST2=$(otool -L "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME")
 		NDY2=$(echo "$DYLIST2" | wc -l)
 		echo "NDY2: $NDY2"
@@ -51,8 +52,39 @@ while [ $I -le $NDY ]; do
 			LINE2=$(echo "$DYLIST2" | sed -n ${I}p)
 			DYLIB2=$(echo $LINE2 | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
 			DYLIB2NAME="$(basename "$DYLIB2")"
-			echo "install_name_tool -change \"$DYLIB2\" \"@loader_path/$DYLIB2NAME\" \"../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME\""
-			install_name_tool -change "$DYLIB2" "@loader_path/$DYLIB2NAME" "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
+			echo "DYLIB2: $DYLIB2"
+			
+			# check what kind of library this is
+			TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
+			if [ -n "$TEST" ]; then
+				# this is a Qt framework
+				echo "install_name_tool -change \"$DYLIB2\" \"@loader_path/$DYLIB2NAME\" \"../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME\""
+				install_name_tool -change "$DYLIB2" "@loader_path/$DYLIB2NAME" "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
+				I2=$((I2+1))
+				continue
+			fi
+			
+			TEST=$(echo "$DYLIB" | grep '\.framework')
+			if [ -n "$TEST" ]; then
+				# this is a system framework, don't patch the path
+				echo "this is a system framework, don't patch the path"
+				I2=$((I2+1))
+				continue
+			fi
+			
+			TEST=$(echo "$DYLIB" | grep '^/usr/lib/')
+			if [ -n "$TEST" ]; then
+				# this is a system library, don't patch the path
+				echo "this is a system library, don't patch the path"
+				I2=$((I2+1))
+				continue
+			fi
+			
+			# all previous test were negative, it must be a standard library
+			echo "install_name_tool -change \"$DYLIB2\" \"@rpath/$DYLIB2NAME\" \"../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME\""
+			install_name_tool -change "$DYLIB2" "@rpath/$DYLIB2NAME" "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
+		
+			
 			I2=$((I2+1))
 		done
 		otool -L "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
