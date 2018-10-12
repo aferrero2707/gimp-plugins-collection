@@ -16,7 +16,7 @@ if [ ! -e gmic-clone ]; then
 fi
 
 brew cask uninstall oclint
-brew install fftw curl qt || exit 1
+brew install fftw curl qt@5.5 || exit 1
 #brew link qt --force || exit 1
 
 export PATH="/usr/local/opt/qt/bin:$PATH"
