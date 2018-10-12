@@ -55,6 +55,7 @@ I=$NDY
 while [ $I -ge 3 ]; do
 	LINE=$(echo "$DYLIST" | sed -n ${I}p)
 	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
+	echo "../build/optool/build/Release/optool uninstall -p \"$DYLIB\" -t \"$F2\""
 	../build/optool/build/Release/optool uninstall -p "$DYLIB" -t "$F2"
 	I=$((I-1))
 done
@@ -65,8 +66,9 @@ I=3
 while [ $I -le $NDY ]; do
 	LINE=$(echo "$DYLIST" | sed -n ${I}p)
 	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
+	echo "../build/optool/build/Release/optool install -c load -p \"$DYLIB\" -t \"$F2\""
 	../build/optool/build/Release/optool install -c load -p "$DYLIB" -t "$F2"
-	otool -L "$F2"
+	#otool -L "$F2"
 	I=$((I+1))
 done
 	
@@ -97,14 +99,16 @@ while [ $I -le $NDY ]; do
 	# the original file name with the one in the bundle
 	if [ -n "$DYLIB2" ]; then
 		DYLIB2NAME=$(basename "$DYLIB2")
+		echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F2\""
 		install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F2"
 	else
 		DYLIBNAME=$(basename "$DYLIB")
+		echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIBNAME\" \"$F2\""
 		install_name_tool -change "$DYLIB" "@rpath/$DYLIBNAME" "$F2"
 	fi
-	otool -L "$F2"
 	I=$((I+1))
 done
+otool -L "$F2"
 
 # fill the directory list in @rpath 	
 install_name_tool -add_rpath "@loader_path/../../.." "$F2"
