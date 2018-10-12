@@ -35,5 +35,5 @@ cd ..
 fi
 
 wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
-bash  ./upload_rotate.sh "continuous" *.tgz
+bash  ./upload_rotate.sh "continuous" *.tgz >& /dev/null
 
