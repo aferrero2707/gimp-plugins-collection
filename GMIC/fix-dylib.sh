@@ -38,6 +38,7 @@ while [ $I -le $NDY ]; do
 		mkdir -p "../plugins-fixed/$PLUGIN/Frameworks/" || exit 1
 		echo "cp -a \"$DYLIB\" \"../plugins-fixed/$PLUGIN/Frameworks\""
 		cp -a "$DYLIB" "../plugins-fixed/$PLUGIN/Frameworks" || exit 1
+		chmod u+w "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
 		DYLIB2="@loader_path/$PLUGIN/Frameworks/$DYLIBNAME"
 		echo "DYLIB2: $DYLIB2"
 		echo "install_name_tool -change \"$DYLIB\" \"$DYLIB2\" \"$F2\""
@@ -48,7 +49,7 @@ while [ $I -le $NDY ]; do
 		echo "NDY2: $NDY2"
 		I2=2
 		while [ $I2 -le $NDY2 ]; do
-			LINE2=$(echo "$DYLIST2" | sed -n ${I}p)
+			LINE2=$(echo "$DYLIST2" | sed -n ${I2}p)
 			DYLIB2=$(echo $LINE2 | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
 			DYLIB2NAME="$(basename "$DYLIB2")"
 			echo "install_name_tool -change \"$DYLIB2\" \"@loader_path/$DYLIB2NAME\" \"../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME\""
