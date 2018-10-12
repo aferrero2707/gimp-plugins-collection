@@ -82,7 +82,7 @@ while [ $I -le $NDY ]; do
 	echo "DYLIB2: $DYLIB2"
 	
 	#check if this is a system library, using an ad-hoc euristic
-	TEST=$(echo "$DYLIB" | grep '\.framework')
+	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '/System/')
 	if [ -n "$TEST" ]; then
 		# this looks like a framework, no ned to patch the absolute path
 		I=$((I+1)); continue;
