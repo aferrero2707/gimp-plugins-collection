@@ -16,6 +16,9 @@ rm -f /tmp/gimp.app
 ln -s "$GIMP_BUNDLE" /tmp/gimp.app || exit 1
 ls -l /tmp/gimp.app/
 bash ./fix-dylib.sh ${TARGET_PLUGIN} "$(basename "$GIMP_BUNDLE")" || exit 1
+if [ -e "${TARGET_PLUGIN}/fix-dylib.sh" ]; then
+	bash "${TARGET_PLUGIN}/fix-dylib.sh" ${TARGET_PLUGIN} "McGimp-2.10.6.app"
+fi
 ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
 tar czf ../${TARGET_PLUGIN}-Gimp-2.10.6-OSX.tgz ??* || exit 1
@@ -28,9 +31,6 @@ unzip McGimp-2.10.6.app.zip
 rm -f /tmp/gimp.app
 ln -s "$(pwd)/McGimp-2.10.6.app" /tmp/gimp.app
 bash ./fix-dylib.sh ${TARGET_PLUGIN} "McGimp-2.10.6.app"
-if [ -e "${TARGET_PLUGIN}/fix-dylib.sh" ]; then
-	bash "${TARGET_PLUGIN}/fix-dylib.sh" ${TARGET_PLUGIN} "McGimp-2.10.6.app"
-fi
 ls plugins-fixed
 cd plugins-fixed
 tar czvf ../${TARGET_PLUGIN}-McGimp-2.10.6-OSX.tgz ??*
