@@ -36,7 +36,7 @@ echo "NDY: $NDY"
 F2="../plugins-fixed/$F"
 cp -a "$F" "$F2"
 
-../build/macdylibbundler/dylibbundler -b -x "$F2" -d "../plugins-fixed/$PLUGIN/lib" --create-dir -p "@rpath"
+../build/macdylibbundler/dylibbundler -b -x "$F2" -d "../plugins-fixed/$PLUGIN/lib" --create-dir -p "@rpath" > /dev/null
 for DYLIB in "../plugins-fixed/$PLUGIN/lib/"*.dylib; do
 	PREFIX=$(basename "$DYLIB" | cut -d'.' -f 1)
 	echo "PREFIX: $PREFIX"
