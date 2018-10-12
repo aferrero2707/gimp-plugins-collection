@@ -28,6 +28,9 @@ unzip McGimp-2.10.6.app.zip
 rm -f /tmp/gimp.app
 ln -s "$(pwd)/McGimp-2.10.6.app" /tmp/gimp.app
 bash ./fix-dylib.sh ${TARGET_PLUGIN} "McGimp-2.10.6.app"
+if [ -e "${TARGET_PLUGIN}/fix-dylib.sh" ]; then
+	bash "${TARGET_PLUGIN}/fix-dylib.sh" ${TARGET_PLUGIN} "McGimp-2.10.6.app"
+fi
 ls plugins-fixed
 cd plugins-fixed
 tar czvf ../${TARGET_PLUGIN}-McGimp-2.10.6-OSX.tgz ??*
