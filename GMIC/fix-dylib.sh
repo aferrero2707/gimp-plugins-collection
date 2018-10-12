@@ -56,7 +56,7 @@ while [ $I -le $NDY ]; do
 			echo "DYLIB2: $DYLIB2"
 			
 			# check what kind of library this is
-			TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
+			TEST=$(echo "$DYLIB2" | grep '\.framework' | grep '^/usr/local/')
 			if [ -n "$TEST" ]; then
 				# this is a Qt framework
 				echo "install_name_tool -change \"$DYLIB2\" \"@loader_path/$DYLIB2NAME\" \"../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME\""
@@ -65,7 +65,7 @@ while [ $I -le $NDY ]; do
 				continue
 			fi
 			
-			TEST=$(echo "$DYLIB" | grep '\.framework')
+			TEST=$(echo "$DYLIB2" | grep '\.framework')
 			if [ -n "$TEST" ]; then
 				# this is a system framework, don't patch the path
 				echo "this is a system framework, don't patch the path"
@@ -73,7 +73,7 @@ while [ $I -le $NDY ]; do
 				continue
 			fi
 			
-			TEST=$(echo "$DYLIB" | grep '^/usr/lib/')
+			TEST=$(echo "$DYLIB2" | grep '^/usr/lib/')
 			if [ -n "$TEST" ]; then
 				# this is a system library, don't patch the path
 				echo "this is a system library, don't patch the path"
