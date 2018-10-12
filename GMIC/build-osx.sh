@@ -8,8 +8,10 @@ if [ ! -e gmic-qt ]; then
 fi
 cd gmic-qt || exit 1
 if [ ! -e gmic-clone ]; then
-	echo "Running git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone"
-	git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone || exit 1
+	#echo "Running git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone"
+	#git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone || exit 1
+	echo "Running git clone https://github.com/dtschump/gmic.git gmic-clone"
+	git clone https://github.com/dtschump/gmic.git gmic-clone || exit 1
 	echo "... finished"
 fi
 
