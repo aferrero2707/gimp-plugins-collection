@@ -1,5 +1,7 @@
 #! /bin/bash
 
+export MACOSX_DEPLOYMENT_TARGET=10.8
+
 if [ -z "${HB_PREFIX}" ]; then
 	export HB_PREFIX="/usr/local"
 fi
