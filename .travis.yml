@@ -1,5 +1,7 @@
 language: generic
 
+osx_image: xcode6.4
+
 os:
   #- linux
   - osx
