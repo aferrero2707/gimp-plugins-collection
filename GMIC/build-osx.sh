@@ -16,7 +16,7 @@ if [ ! -e gmic-clone ]; then
 fi
 
 brew cask uninstall oclint
-brew install fftw curl || exit 1
+brew install fftw curl zlib || exit 1
 wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz || exit 1
 (cd /usr/local/Cellar && \
   wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz && \
