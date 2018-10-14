@@ -56,6 +56,15 @@ class Qt < Formula
       -release
       -opensource -confirm-license
       -skip qtwebengine
+      -skip qtandroidextras
+      -skip qtdoc
+      -skip qtwebchannel
+      -skip qtwebview
+      -skip qtmultimedia
+      -skip qtsensors
+      -skip qtserialbus
+      -skip qt3d
+      -skip qtcanvas3d
       -system-zlib
       -qt-libpng
       -qt-libjpeg
