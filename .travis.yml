@@ -5,7 +5,7 @@ os:
   - osx
 
 env:
-  - TARGET_PLUGIN=PhFGimp
+  #- TARGET_PLUGIN=PhFGimp
   - TARGET_PLUGIN=GMIC
 
 before_install:
