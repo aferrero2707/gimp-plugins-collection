@@ -49,6 +49,7 @@ done
 
 #continue
 cp -a "$F" "$F2"
+cp -a "$F" "${F2}-orig"
 
 # remove all the LC_ADD_DYLIB commands
 I=$NDY
