@@ -84,6 +84,7 @@ class Qt < Formula
       -no-rpath
       -pkg-config
       -dbus-runtime
+      -silent
     ]
 
     args << "-nomake" << "examples" if build.without? "examples"
