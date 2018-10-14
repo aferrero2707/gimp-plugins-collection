@@ -3,6 +3,13 @@
 source ./environment-osx.sh
 brew update >& /dev/null
 
+cd $( brew --prefix )/Homebrew/Library/Taps/homebrew/homebrew-core || exit 1
+git checkout 9ba3d6ef8891e5c15dbdc9333f857b13711d4e97 Formula/qt@5.5.rb || exit 1
+
+brew install qt@5.5 || exit 1
+
+exit
+
 export HOMEBREW_MAKE_JOBS=3
 brew install --verbose --build-from-source --build-bottle ./travis/qt.rb || exit 1
 brew bottle qt || exit 1
