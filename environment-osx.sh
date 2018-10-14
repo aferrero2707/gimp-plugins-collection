@@ -4,6 +4,7 @@ if [ -z "${HB_PREFIX}" ]; then
 	export HB_PREFIX="/usr/local"
 fi
 export PREFIX=$(pwd)/inst
+export MACOSX_DEPLOYMENT_TARGET=10.8
 
 export PATH="${HB_PREFIX}/opt/gettext/bin:${HB_PREFIX}/opt/jpeg-turbo:${HB_PREFIX}/bin:$PATH"
 export LD_LIBRARY_PATH="${HB_PREFIX}/opt/gettext/lib:${HB_PREFIX}/opt/jpeg-turbo/lib:${HB_PREFIX}/lib:$LD_LIBRARY_PATH"
