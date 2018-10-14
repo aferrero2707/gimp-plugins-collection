@@ -29,6 +29,9 @@ export LD_LIBRARY_PATH="/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/zlib/li
 
 ls /usr/local/opt/qt/bin
 
+ls /usr/local/opt/curl/lib/pkgconfig
+exit
+
 echo "Generating GMIC headers"
 make -C gmic-clone/src CImg.h gmic_stdlib.h || exit 1
 
