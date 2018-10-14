@@ -23,9 +23,9 @@ wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/c
   tar xf qt--5.6.3.yosemite.bottle.tar.gz && brew link --force qt) || exit 1
 #brew link qt --force || exit 1
 
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LD_LIBRARY_PATH="/usr/local/opt/qt/lib:$LD_LIBRARY_PATH"
+export PATH="/usr/local/opt/zlib/bin:/usr/local/opt/qt/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/qt/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LD_LIBRARY_PATH="/usr/local/opt/zlib/lib:/usr/local/opt/qt/lib:$LD_LIBRARY_PATH"
 
 ls /usr/local/opt/qt/bin
 
