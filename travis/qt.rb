@@ -87,8 +87,8 @@ class Qt < Formula
     #args << "-proprietary-codecs" if build.with? "proprietary-codecs"
 
     system "./configure", *args
-    ENV.deparallelize
     system "make"
+    ENV.deparallelize
     system "make", "install"
 
     # Some config scripts will only find Qt in a "Frameworks" folder
