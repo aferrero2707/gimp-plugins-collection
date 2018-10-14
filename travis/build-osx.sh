@@ -5,7 +5,11 @@ brew update
 
 export HOMEBREW_MAKE_JOBS=3
 brew install --verbose --build-from-source --build-bottle ./travis/qt.rb || exit 1
-brew bottle qt|| exit 1
+brew bottle qt || exit 1
+
+wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+bash  ./upload_rotate.sh "continuous" qt*bottle.tar.gz
+
 
 exit
 
