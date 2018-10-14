@@ -40,6 +40,11 @@ class Qt < Formula
     url "https://raw.githubusercontent.com/Homebrew/formula-patches/e8fe6567/qt5/restore-pc-files.patch"
     sha256 "48ff18be2f4050de7288bddbae7f47e949512ac4bcd126c2f504be2ac701158b"
   end
+  
+  # fontdatabases/mac/qfontengine_coretext.mm:767:20: error: qualified reference to 'QFixed' is a constructor name rather than a type in this context
+  patch do
+    url "https://raw.githubusercontent.com/aferrero2707/gimp-plugins-collection/cached-qt5/travis/qt-qfixed.patch"
+  end
 
   # Chromium build failures with Xcode 10, fixed upstream:
   # https://bugs.chromium.org/p/chromium/issues/detail?id=840251
