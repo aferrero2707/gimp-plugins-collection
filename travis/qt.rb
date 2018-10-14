@@ -46,6 +46,11 @@ class Qt < Formula
     url "https://raw.githubusercontent.com/aferrero2707/gimp-plugins-collection/cached-qt5/travis/qt-qfixed.patch"
   end
 
+  # qcocoahelpers.mm:552:39: error: use of undeclared identifier 'InvalidContext'
+  patch do
+    url "https://raw.githubusercontent.com/aferrero2707/gimp-plugins-collection/cached-qt5/travis/qt-qcocoahelpers.patch"
+  end
+
   # Chromium build failures with Xcode 10, fixed upstream:
   # https://bugs.chromium.org/p/chromium/issues/detail?id=840251
   # https://bugs.chromium.org/p/chromium/issues/detail?id=849689
