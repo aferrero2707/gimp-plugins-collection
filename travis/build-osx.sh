@@ -2,6 +2,13 @@
 
 source ./environment-osx.sh
 brew update
+
+export HOMEBREW_MAKE_JOBS=3
+brew install --verbose --build-from-source --build-bottle ./travis/qt.rb || exit 1
+brew bottle qt|| exit 1
+
+exit
+
 mkdir plugins || exit 1
 bash ./build-common-osx.sh || exit 1
 exit
