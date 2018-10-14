@@ -1,7 +1,7 @@
 #! /bin/bash
 
 source ./environment-osx.sh
-brew update
+brew update >& /dev/null
 
 export HOMEBREW_MAKE_JOBS=3
 brew install --verbose --build-from-source --build-bottle ./travis/qt.rb || exit 1
