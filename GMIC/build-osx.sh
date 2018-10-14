@@ -33,6 +33,7 @@ ls /usr/local/opt/curl/lib/pkgconfig
 echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
 
 ls -l /usr/local/Cellar/qt/5.6.3/lib/QtCore.framework/Versions/5/QtCore
+otool -L /usr/bin/install_name_tool
 exit 1
 
 echo "Generating GMIC headers"
