@@ -47,7 +47,7 @@ fi
 
 if [ ! -e gegl ]; then
 	(git clone -b GEGL_0_4_8 https://git.gnome.org/browse/gegl) || exit 1
-	(cd gegl && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-docs --prefix=${PREFIX} --enable-gtk-doc-html=no --enable-introspection=no && make -j 3 install) || exit 1
+	(cd gegl && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-docs --prefix=${PREFIX} --enable-gtk-doc-html=no --enable-introspection=no && make V=1 -j 3 install) || exit 1
 fi
 
 #exit
