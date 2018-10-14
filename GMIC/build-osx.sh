@@ -31,7 +31,9 @@ ls /usr/local/opt/qt/bin
 
 ls /usr/local/opt/curl/lib/pkgconfig
 echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
-#exit
+
+ls -l /usr/local/Cellar/qt/5.6.3/lib/QtCore.framework/Versions/5/QtCore
+exit 1
 
 echo "Generating GMIC headers"
 make -C gmic-clone/src CImg.h gmic_stdlib.h || exit 1
