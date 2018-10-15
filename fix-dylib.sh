@@ -51,29 +51,24 @@ done
 cp -a "$F" "$F2"
 cp -a "$F" "${F2}-orig"
 
-# remove all the LC_ADD_DYLIB commands
-I=$NDY
-while [ $I -ge 3 ]; do
-	LINE=$(echo "$DYLIST" | sed -n ${I}p)
-	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
-	echo "../build/optool/build/Release/optool uninstall -p \"$DYLIB\" -t \"$F2\""
-	../build/optool/build/Release/optool uninstall -p "$DYLIB" -t "$F2"
-	I=$((I-1))
-done
-	
-otool -L "$F2"
-# re-introduce all the LC_ADD_DYLIB commands, this time without version checking
-I=3
+# remove all the version information for non-system libraries
+I=2
 while [ $I -le $NDY ]; do
 	LINE=$(echo "$DYLIST" | sed -n ${I}p)
 	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
-	echo "../build/optool/build/Release/optool install -c load -p \"$DYLIB\" -t \"$F2\""
-	../build/optool/build/Release/optool install -c load -p "$DYLIB" -t "$F2"
-	#otool -L "$F2"
-	I=$((I+1))
+	TEST=$(echo "$DYLIB" | grep '^/usr/local/')
+	if [ -z "$TEST" ]; then
+		TEST=$(echo "$DYLIB" | grep 'gimp-plugins-collection/inst/')
+	fi
+	if [ -n "$TEST" ]; then
+		echo "../build/optool/build/Release/optool vreset -p \"$DYLIB\" -t \"$F2\""
+		../build/optool/build/Release/optool vreset -p "$DYLIB" -t "$F2"
+	fi
+	I=$((I-1))
 done
-	
-I=3
+
+# patch absolute paths
+I=2
 while [ $I -le $NDY ]; do
 	LINE=$(echo "$DYLIST" | sed -n ${I}p)
 	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)

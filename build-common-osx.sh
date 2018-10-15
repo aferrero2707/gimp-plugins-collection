@@ -69,7 +69,8 @@ fi
 
 
 if [ ! -e optool ]; then
-	git clone https://github.com/alexzielenski/optool.git || exit 1
+	#git clone https://github.com/alexzielenski/optool.git || exit 1
+	git clone https://github.com/aferrero2707/optool.git || exit 1
 	(cd optool && git submodule update --init --recursive && CC="" xcodebuild build) || exit 1
 fi
 
