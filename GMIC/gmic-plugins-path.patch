@@ -1,6 +1,6 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 20:43:26 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 21:38:37 2018
 ***************
 *** 43,48 ****
 --- 43,51 ----
@@ -15,7 +15,7 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
   {
 ***************
 *** 68,73 ****
---- 71,100 ----
+--- 71,103 ----
     SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
   #endif
   
@@ -32,9 +32,12 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 +         char* fullpath = dirname(fullexname);
 +         printf("full executable path is %s\n", fullpath);
 +         if( fullpath ) {
-+           appDir = fullpath;
-+           appDir += "GMIC/plugins";
-+           printf("QCoreApplication::addLibraryPath(%s)\n", appDir.data());
++           char pluginpath[2048] = {0};
++           strncpy( pluginpath, fullpath, 2047);
++           strncat( pluginpath, "GMIC/plugins", 2047);
++           appDir = pluginpath;
++           //appDir += "GMIC/plugins";
++           printf("QCoreApplication::addLibraryPath(%s)\n", appDir.unicode());
 +           QCoreApplication::addLibraryPath(appDir);
 +         }
 +         free(fullexname);
