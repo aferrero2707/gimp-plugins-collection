@@ -107,6 +107,7 @@ otool -L "$F2"
 done
 
 # Copy Qt5 plugins
+cat /usr/local/opt/qt@5.5/lib/pkgconfig/Qt5Core.pc
 QT5PLUGINDIR=$(pkg-config --variable=plugindir Qt5Core)
 if [ x"$QT5PLUGINDIR" != "x" ]; then
   mkdir -p "../plugins-fixed/$PLUGIN/plugins"
