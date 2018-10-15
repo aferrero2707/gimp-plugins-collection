@@ -64,7 +64,7 @@ while [ $I -le $NDY ]; do
 		echo "../build/optool/build/Release/optool vreset -p \"$DYLIB\" -t \"$F2\""
 		../build/optool/build/Release/optool vreset -p "$DYLIB" -t "$F2"
 	fi
-	I=$((I-1))
+	I=$((I+1))
 done
 
 # patch absolute paths
