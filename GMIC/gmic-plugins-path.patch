@@ -1,18 +1,18 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 18:36:47 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 20:43:26 2018
 ***************
-*** 22,27 ****
---- 22,30 ----
-   *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
-   *
-   */
+*** 43,48 ****
+--- 43,51 ----
+  #include "Widgets/LanguageSelectionWidget.h"
+  #include "Widgets/ProgressInfoWindow.h"
+  #include "gmic.h"
 + #include <stdlib.h>
 + #include <libgen.h>
 + #include <mach-o/dyld.h>
-  #include "gmic_qt.h"
-  #include <QApplication>
-  #include <QDebug>
+  
+  namespace GmicQt
+  {
 ***************
 *** 68,73 ****
 --- 71,100 ----
