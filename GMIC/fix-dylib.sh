@@ -115,3 +115,27 @@ if [ x"$QT5PLUGINDIR" != "x" ]; then
   cp -a "$QT5PLUGINDIR"/* "../plugins-fixed/$PLUGIN/plugins"
 fi
 
+
+# patch library paths in Qt plug-ins
+# they should only reference system libraries or Qt frameworks
+for F in "../plugins-fixed/$PLUGIN/plugins"/*/*.dylib; do
+
+DYLIST=(otool -L "$F")
+NDY=$(echo "$DYLIST" | wc -l)
+echo "NDY: $NDY"
+I=2
+while [ $I -le $NDY ]; do
+	LINE=$(echo "$DYLIST" | sed -n ${I}p)
+	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
+	DYLIBNAME="$(basename "$DYLIB")"
+
+	# check what kind of library this is
+	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
+	if [ -n "$TEST" ]; then
+		# this is a Qt framework
+		echo "install_name_tool -change \"$DYLIB\" \"@loader_path/../Frameworks/$DYLIBNAME\" \"$F\""
+		install_name_tool -change "$DYLIB" "@loader_path/../Frameworks/$DYLIBNAME" "$F"
+	fi
+done
+
+done

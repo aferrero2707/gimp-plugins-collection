@@ -1,16 +1,21 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 13:29:20 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 16:29:06 2018
 ***************
 *** 68,73 ****
---- 68,78 ----
+--- 68,83 ----
     SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
   #endif
   
-+   QDir dir(QCoreApplication::applicationDirPath());
-+   QString path = dir.absolutePath();
-+   path += "GMIC/plugins";
-+   QCoreApplication::addLibraryPath(path);
++   QString appDir;
++   {
++     QCoreApplication temp(argc, argv);
++     QDir dir(QCoreApplication::applicationDirPath());
++     appDir = dir.absolutePath();
++     appDir += "GMIC/plugins";
++   }
++   QCoreApplication::addLibraryPath(appDir);
++   printf("QCoreApplication::addLibraryPath(%s)\n", appDir.data());
 + 
     QApplication app(dummy_argc, dummy_argv);
     app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
