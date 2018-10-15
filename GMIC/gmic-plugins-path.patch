@@ -1,6 +1,6 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 22:21:14 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 22:56:12 2018
 ***************
 *** 43,48 ****
 --- 43,51 ----
@@ -14,8 +14,8 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
   namespace GmicQt
   {
 ***************
-*** 68,73 ****
---- 71,104 ----
+*** 68,74 ****
+--- 71,109 ----
     SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
   #endif
   
@@ -47,6 +47,11 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 +       printf("buffer too small; need size %u\n", size);
 +   }
 + 
++   foreach (const QString &path, app.libraryPaths())
++     std::cout<<path<<std::endl;
++ 
     QApplication app(dummy_argc, dummy_argv);
++ 
     app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
     QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
+    QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
