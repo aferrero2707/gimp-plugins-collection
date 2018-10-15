@@ -122,7 +122,8 @@ for F in "../plugins-fixed/$PLUGIN/plugins"/*/*.dylib; do
 
 echo "otool -L \"$F\""
 otool -L "$F"
-DYLIST=(otool -L "$F")
+DYLIST=$(otool -L "$F")
+echo "DYLIST: $DYLIST"
 NDY=$(echo "$DYLIST" | wc -l)
 echo "NDY: $NDY"
 I=2
