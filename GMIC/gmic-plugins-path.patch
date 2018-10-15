@@ -1,28 +1,45 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 17:42:48 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Mon Oct 15 18:06:24 2018
+***************
+*** 22,27 ****
+--- 22,30 ----
+   *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
+   *
+   */
++ #include <stdlib.h>
++ #include <libgen.h>
++ #include <mach-o/dyld.h>
+  #include "gmic_qt.h"
+  #include <QApplication>
+  #include <QDebug>
 ***************
 *** 68,73 ****
---- 68,90 ----
+--- 71,98 ----
     SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
   #endif
   
 +   QString appDir;
 +   {
-+     char exname[1024] = {0};
++     char exname[2048] = {0};
 +     // get the path where the executable is stored
 +     uint32_t size = sizeof(exname);
-+     if (_NSGetExecutablePath(exname, &size) == 0)
++     if (_NSGetExecutablePath(exname, &size) == 0) {
 +       printf("executable path is %s\n", exname);
-+     else
++       char* fullexname = realpath(exname,NULL);
++       if( fullexname ) {
++         char* fullpath = dirname(fullexname);
++         if( fullpath ) {
++           appDir = fullpath;
++           appDir += "GMIC/plugins";
++           QCoreApplication::addLibraryPath(appDir);
++           printf("QCoreApplication::addLibraryPath(%s)\n", appDir.data());
++         }
++         free(fullexname);
++       }
++     } else
 +       printf("buffer too small; need size %u\n", size);
-+ 
-+     QDir dir(exname);
-+     appDir = dir.absolutePath();
-+     appDir += "GMIC/plugins";
 +   }
-+   QCoreApplication::addLibraryPath(appDir);
-+   printf("QCoreApplication::addLibraryPath(%s)\n", appDir.data());
 + 
     QApplication app(dummy_argc, dummy_argv);
     app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
