@@ -33,14 +33,14 @@ export PATH="/usr/local/opt/curl/bin:/usr/local/opt/zlib/bin:/usr/local/opt/qt@5
 export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/qt@5.5/lib/pkgconfig:$PKG_CONFIG_PATH"
 export LD_LIBRARY_PATH="/usr/local/opt/curl/lib:/usr/local/opt/zlib/lib:/usr/local/opt/qt@5.5/lib:$LD_LIBRARY_PATH"
 
-ls /usr/local/opt/qt/bin
+#ls /usr/local/opt/qt/bin
 
-ls /usr/local/opt/curl/lib/pkgconfig
+#ls /usr/local/opt/curl/lib/pkgconfig
 
-ls /usr/local/opt/qt@5.5/lib
-ls /usr/local/opt/qt@5.5/lib/pkgconfig
-exit 1
-echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
+#ls /usr/local/opt/qt@5.5/lib
+#ls /usr/local/opt/qt@5.5/lib/pkgconfig
+#exit 1
+#echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
 
 #ls -l /usr/local/Cellar/qt/5.6.3/lib/QtCore.framework/Versions/5/QtCore
 #otool -L /usr/bin/install_name_tool
