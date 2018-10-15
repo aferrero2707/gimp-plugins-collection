@@ -108,7 +108,8 @@ done
 
 # Copy Qt5 plugins
 cat /usr/local/opt/qt@5.5/lib/pkgconfig/Qt5Core.pc
-QT5PLUGINDIR=$(pkg-config --variable=plugindir Qt5Core)
+QT5PREFIX="$(pkg-config --variable=prefix Qt5Core)"
+QT5PLUGINDIR="$QT5PREFIX/plugins"
 if [ x"$QT5PLUGINDIR" != "x" ]; then
   mkdir -p "../plugins-fixed/$PLUGIN/plugins"
   cp -a "$QT5PLUGINDIR"/* "../plugins-fixed/$PLUGIN/plugins"
