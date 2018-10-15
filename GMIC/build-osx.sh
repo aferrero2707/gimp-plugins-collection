@@ -13,6 +13,7 @@ if [ ! -e gmic-clone ]; then
 	echo "Running git clone https://github.com/dtschump/gmic.git gmic-clone"
 	git clone https://github.com/dtschump/gmic.git gmic-clone || exit 1
 	echo "... finished"
+	patch -p1 < ../../GMIC/gmic-plugins-path.patch
 fi
 
 brew cask uninstall oclint
