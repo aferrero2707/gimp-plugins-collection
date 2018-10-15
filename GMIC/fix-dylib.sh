@@ -131,6 +131,7 @@ while [ $I -le $NDY ]; do
 	LINE=$(echo "$DYLIST" | sed -n ${I}p)
 	DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
 	DYLIBNAME="$(basename "$DYLIB")"
+	echo "DYLIB: $DYLIB"
 
 	# check what kind of library this is
 	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
@@ -139,6 +140,7 @@ while [ $I -le $NDY ]; do
 		echo "install_name_tool -change \"$DYLIB\" \"@loader_path/../Frameworks/$DYLIBNAME\" \"$F\""
 		install_name_tool -change "$DYLIB" "@loader_path/../Frameworks/$DYLIBNAME" "$F"
 	fi
+	I=$((I+1))
 done
 
 done
