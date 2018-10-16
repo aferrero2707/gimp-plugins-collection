@@ -1,6 +1,6 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 10:55:54 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 11:10:29 2018
 ***************
 *** 43,48 ****
 --- 43,51 ----
@@ -64,7 +64,7 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 +     setenv("QT_DEBUG_PLUGINS", "1");
 +   }
 + 
-+   if( !fullexname ) fullexename = dummy_app_name;
++   if( !fullexname ) fullexname = dummy_app_name;
 +   char * dummy_argv[1] = {fullexname};
 + 
     QApplication app(dummy_argc, dummy_argv);
