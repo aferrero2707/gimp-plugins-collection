@@ -1,6 +1,6 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 09:07:55 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 10:55:54 2018
 ***************
 *** 43,48 ****
 --- 43,51 ----
@@ -14,19 +14,36 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
   namespace GmicQt
   {
 ***************
-*** 68,74 ****
---- 71,105 ----
+*** 62,74 ****
+    TIMING;
+    int dummy_argc = 1;
+    char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
+-   char * dummy_argv[1] = {dummy_app_name};
+- 
+  #ifdef _IS_WINDOWS_
     SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
   #endif
   
-+   QString appDir;
+    QApplication app(dummy_argc, dummy_argv);
+    app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
+    QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
+    QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
+--- 65,107 ----
+    TIMING;
+    int dummy_argc = 1;
+    char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
+  #ifdef _IS_WINDOWS_
+    SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
+  #endif
+  
++   char* fullexname;
 +   {
 +     char exname[2048] = {0};
 +     // get the path where the executable is stored
 +     uint32_t size = sizeof(exname);
 +     if (_NSGetExecutablePath(exname, &size) == 0) {
 +       printf("executable path is %s\n", exname);
-+       char* fullexname = realpath(exname,NULL);
++       fullexname = realpath(exname,NULL);
 +       printf("full executable name is %s\n", fullexname);
 +       if( fullexname ) {
 +         char* fullpath = dirname(fullexname);
@@ -40,11 +57,15 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 +           printf("plugins path is %s\n", pluginpath);
 +           setenv("QT_PLUGIN_PATH", pluginpath, 1);
 +         }
-+         free(fullexname);
 +       }
 +     } else
 +       printf("buffer too small; need size %u\n", size);
++ 
++     setenv("QT_DEBUG_PLUGINS", "1");
 +   }
++ 
++   if( !fullexname ) fullexename = dummy_app_name;
++   char * dummy_argv[1] = {fullexname};
 + 
     QApplication app(dummy_argc, dummy_argv);
 + 
