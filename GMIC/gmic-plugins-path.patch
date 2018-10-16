@@ -1,6 +1,6 @@
 diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 *** gmic-qt/src/gmic_qt.cpp	Sun Oct 14 12:36:05 2018
---- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 08:33:07 2018
+--- gmic-qt-new/src/gmic_qt.cpp	Tue Oct 16 09:07:55 2018
 ***************
 *** 43,48 ****
 --- 43,51 ----
@@ -34,7 +34,7 @@ diff -r -c gmic-qt/src/gmic_qt.cpp gmic-qt-new/src/gmic_qt.cpp
 +         if( fullpath ) {
 +           char pluginpath[2048] = {0};
 +           strncpy( pluginpath, fullpath, 2047);
-+           strncat( pluginpath, "GMIC/plugins:", 2047);
++           strncat( pluginpath, "/GMIC/plugins/:", 2047);
 +           char* envpath = getenv("QT_PLUGIN_PATH");
 +           if( envpath ) strncat( pluginpath, envpath, 2047);
 +           printf("plugins path is %s\n", pluginpath);
