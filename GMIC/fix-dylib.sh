@@ -91,10 +91,12 @@ while [ $I -le $NDY ]; do
 	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
 	if [ -n "$TEST" ]; then
 		DYLIBNAME="$(basename "$DYLIB")"
-		mkdir -p "../plugins-fixed/$PLUGIN/Frameworks/" || exit 1
-		echo "cp -n -a \"$DYLIB\" \"../plugins-fixed/$PLUGIN/Frameworks\""
-		cp -n -a "$DYLIB" "../plugins-fixed/$PLUGIN/Frameworks" || exit 1
-		chmod u+w "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
+		if [ ! -e "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME" ]; then
+			mkdir -p "../plugins-fixed/$PLUGIN/Frameworks/" || exit 1
+			echo "cp -a \"$DYLIB\" \"../plugins-fixed/$PLUGIN/Frameworks\""
+			cp -a "$DYLIB" "../plugins-fixed/$PLUGIN/Frameworks" || exit 1
+			chmod u+w "../plugins-fixed/$PLUGIN/Frameworks/$DYLIBNAME"
+		fi
 		echo "install_name_tool -change \"$DYLIB\" \"@loader_path/../../Frameworks/$DYLIBNAME\" \"$F\""
 		install_name_tool -change "$DYLIB" "@loader_path/../../Frameworks/$DYLIBNAME" "$F"
 	fi
