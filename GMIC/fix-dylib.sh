@@ -137,8 +137,8 @@ while [ $I -le $NDY ]; do
 	TEST=$(echo "$DYLIB" | grep '\.framework' | grep '^/usr/local/')
 	if [ -n "$TEST" ]; then
 		# this is a Qt framework
-		echo "install_name_tool -change \"$DYLIB\" \"@loader_path/../Frameworks/$DYLIBNAME\" \"$F\""
-		install_name_tool -change "$DYLIB" "@loader_path/../Frameworks/$DYLIBNAME" "$F"
+		echo "install_name_tool -change \"$DYLIB\" \"@loader_path/../../Frameworks/$DYLIBNAME\" \"$F\""
+		install_name_tool -change "$DYLIB" "@loader_path/../../Frameworks/$DYLIBNAME" "$F"
 	fi
 	I=$((I+1))
 done
