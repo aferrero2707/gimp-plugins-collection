@@ -19,26 +19,30 @@ fi
 brew cask uninstall oclint
 brew install fftw curl zlib || exit 1
 
+#HASH=9ba3d6ef8891e5c15dbdc9333f857b13711d4e97 #qt@5.5
+#QTPREFIX="qt@5.5"
+HASH=13d52537d1e0e5f913de46390123436d220035f6 #qt 5.9
+QTPREFIX="qt"
 (cd $( brew --prefix )/Homebrew/Library/Taps/homebrew/homebrew-core && \
-  git checkout 9ba3d6ef8891e5c15dbdc9333f857b13711d4e97 Formula/qt@5.5.rb && \
-  brew install qt@5.5 && brew link --force qt@5.5) || exit 1
+  git checkout $HASH Formula/${QTPREFIX}.rb && \
+  brew install ${QTPREFIX} && brew link --force ${QTPREFIX}) || exit 1
 
 #wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz || exit 1
 #(cd /usr/local/Cellar && \
 #  wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz && \
 #  tar xf qt--5.6.3.yosemite.bottle.tar.gz && brew link --force qt) || exit 1
-#brew link qt@5.5 --force || exit 1
+#brew link ${QTPREFIX} --force || exit 1
 
-export PATH="/usr/local/opt/curl/bin:/usr/local/opt/zlib/bin:/usr/local/opt/qt@5.5/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/qt@5.5/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LD_LIBRARY_PATH="/usr/local/opt/curl/lib:/usr/local/opt/zlib/lib:/usr/local/opt/qt@5.5/lib:$LD_LIBRARY_PATH"
+export PATH="/usr/local/opt/curl/bin:/usr/local/opt/zlib/bin:/usr/local/opt/${QTPREFIX}/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/${QTPREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LD_LIBRARY_PATH="/usr/local/opt/curl/lib:/usr/local/opt/zlib/lib:/usr/local/opt/${QTPREFIX}/lib:$LD_LIBRARY_PATH"
 
 #ls /usr/local/opt/qt/bin
 
 #ls /usr/local/opt/curl/lib/pkgconfig
 
-#ls /usr/local/opt/qt@5.5/lib
-#ls /usr/local/opt/qt@5.5/lib/pkgconfig
+#ls /usr/local/opt/${QTPREFIX}/lib
+#ls /usr/local/opt/${QTPREFIX}/lib/pkgconfig
 #exit 1
 #echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
 
