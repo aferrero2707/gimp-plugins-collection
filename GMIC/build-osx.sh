@@ -24,6 +24,7 @@ brew install fftw curl zlib || exit 1
 HASH=13d52537d1e0e5f913de46390123436d220035f6 #qt 5.9
 QTPREFIX="qt"
 (cd $( brew --prefix )/Homebrew/Library/Taps/homebrew/homebrew-core && \
+  git --no-pager log master -- Formula/qt.rb && \
   git checkout $HASH -- Formula/${QTPREFIX}.rb && \
   brew install ${QTPREFIX} && brew link --force ${QTPREFIX}) || exit 1
 
