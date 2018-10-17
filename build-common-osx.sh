@@ -7,7 +7,7 @@ mkdir -p build && cd build
 if [ -n "$TRAVIS" ]; then
 	brew update || exit 1
 	(cd $( brew --prefix )/Homebrew/Library/Taps/homebrew/homebrew-core && \
-  git --no-pager log master -- Formula/qt.rb)
+	 git pull --unshallow && git --no-pager log master -- Formula/qt.rb)
   	exit 1
 
 	brew reinstall little-cms2 openexr gettext intltool json-c json-glib glib-networking gexiv2 librsvg poppler gtk+ py2cairo pygtk gtk-mac-integration || exit 1
