@@ -16,6 +16,8 @@ if [ -n "$HASH" ]; then
 	curl -L https://github.com/${REPO_SLUG}/releases/tag/${RELEASE_TAG}/$HASH > /tmp/commit-GMIC-old.hash 
 	result=$?
 	if [ x"$result"	= "x0" ]; then
+		echo "commit-GMIC-old.hash:"; cat /tmp/commit-GMIC-old.hash
+		echo "commit-GMIC-new.hash:"; cat /tmp/commit-GMIC-new.hash
 		diff -q /tmp/commit-GMIC-new.hash /tmp/commit-GMIC-old.hash
 		result=$?
 		if [ x"$result"	= "x0" ]; then exit; fi
