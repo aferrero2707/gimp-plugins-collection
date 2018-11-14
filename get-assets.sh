@@ -12,7 +12,7 @@ RELEASE_ID=$(echo "$RESPONSE" |  grep '"id":' | head -n 1 | tr -s ' ' | cut -d':
 echo "RELEASE_ID: $RELEASE_ID"
 	
 	
-RELEASE_ASSETS=$(curl -XGET "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}/assets")
+RELEASE_ASSETS=$(curl -XGET --header "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}/assets")
 ASSET_IDS=$(echo "$RELEASE_ASSETS" | grep '^    "id":')
 ASSET_NAMES=$(echo "$RELEASE_ASSETS" | grep '^    "name":')
 NASSETS=$(echo "$ASSET_IDS" | wc -l)

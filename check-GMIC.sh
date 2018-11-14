@@ -27,6 +27,7 @@ echo "Triggering rebuild of GMIC"
 git clone -b master https://github.com/aferrero2707/gimp-plugins-collection.git /tmp/gimp-plugins-collection
 cd /tmp/gimp-plugins-collection
 git checkout -b GMIC
+git pull origin GMIC
 git merge master
 cat travis.yml.template | sed -e 's|%OS%|osx|g' | sed -e 's|%PLUGIN%|GMIC|g' > .travis.yml
 git add -A
