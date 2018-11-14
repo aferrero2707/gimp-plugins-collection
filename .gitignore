@@ -2,3 +2,4 @@ build
 inst
 plugins
 plugins-fixed
+install.sh
