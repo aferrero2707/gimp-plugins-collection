@@ -6,13 +6,13 @@
 rm -f assets.txt
 	
 echo "URL: https://api.github.com/repos/${REPO_SLUG}/releases/tags/${RELEASE_TAG}"
-RESPONSE=$(curl -XGET --header "Authorization: token ${GITHUB_TOKEN}"  "https://api.github.com/repos/${REPO_SLUG}/releases/tags/${RELEASE_TAG}" 2> /dev/null)
+RESPONSE=$(curl -XGET --header "Authorization: token ${GITHUB_TOKEN}"  "https://api.github.com/repos/${REPO_SLUG}/releases/tags/${RELEASE_TAG}")
 echo "RESPONSE: $RESPONSE"
 RELEASE_ID=$(echo "$RESPONSE" |  grep '"id":' | head -n 1 | tr -s ' ' | cut -d':' -f 2 | tr -d ' ' | cut -d',' -f 1)
 echo "RELEASE_ID: $RELEASE_ID"
 	
 	
-RELEASE_ASSETS=$(curl -XGET "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}/assets" 2> /dev/null)
+RELEASE_ASSETS=$(curl -XGET "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}/assets")
 ASSET_IDS=$(echo "$RELEASE_ASSETS" | grep '^    "id":')
 ASSET_NAMES=$(echo "$RELEASE_ASSETS" | grep '^    "name":')
 NASSETS=$(echo "$ASSET_IDS" | wc -l)
