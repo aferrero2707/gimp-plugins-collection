@@ -18,6 +18,12 @@ if [ ! -e gmic-clone ]; then
 	cd gmic-clone || exit 1
 	git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash || exit 1
 	cd ..
+	
+	rm -rf CImg-clone; git clone https://github.com/dtschump/CImg.git CImg-clone || exit 1
+	cd CImg-clone || exit 1
+	git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash
+	cd ..
+
 fi
 
 brew cask uninstall oclint
