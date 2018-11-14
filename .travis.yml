@@ -1,0 +1,13 @@
+language: generic
+
+os:
+  - linux
+
+before_install:
+  - bash ./check-plugins.sh
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)$/
+    - /^(?i:unstable)$/

@@ -1,5 +1,4 @@
-build
-inst
-plugins
-plugins-fixed
-install.sh
+assets.txt
+gimp-plugins-collection-master/
+gmic-qt/
+
