@@ -17,13 +17,13 @@ ln -s "$GIMP_BUNDLE" /tmp/gimp.app || exit 1
 ls -l /tmp/gimp.app/
 bash ./fix-dylib.sh ${TARGET_PLUGIN} "$(basename "$GIMP_BUNDLE")" || exit 1
 if [ -e "${TARGET_PLUGIN}/fix-dylib.sh" ]; then
-	bash "${TARGET_PLUGIN}/fix-dylib.sh" ${TARGET_PLUGIN} "McGimp-2.10.6.app"
+	bash "${TARGET_PLUGIN}/fix-dylib.sh" ${TARGET_PLUGIN} "$(basename "$GIMP_BUNDLE")"
 fi
 ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
-tar czf ../${TARGET_PLUGIN}-Gimp-2.10.6-OSX.tgz ??* || exit 1
+tar czf ../${TARGET_PLUGIN}-Gimp-2.10-OSX.tgz ??* || exit 1
 cd ..
-cp /tmp/commit-${TARGET_PLUGIN}-new.hash ${TARGET_PLUGIN}-Gimp-2.10.6-OSX.hash
+cp /tmp/commit-${TARGET_PLUGIN}-new.hash ${TARGET_PLUGIN}-Gimp-2.10-OSX.hash
 
 if [ "x" = "y" ]; then
 rm -rf plugins-fixed
