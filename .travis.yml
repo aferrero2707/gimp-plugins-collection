@@ -5,7 +5,7 @@ os:
   - osx
 
 env:
-  - TARGET_PLUGIN=GMIC
+  - TARGET_PLUGIN=${PLUGIN}
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install ccache; fi
