@@ -7,6 +7,10 @@ rm -rf gmic-clone; git clone https://github.com/dtschump/gmic.git gmic-clone || 
 cd gmic-clone
 git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash
 cd ../../
+rm -rf CImg; git clone https://github.com/dtschump/CImg.git || exit 1
+cd CImg || exit 1
+git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash
+cd ..
 
 HASH=$(cat assets.txt | grep "^GMIC-" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
