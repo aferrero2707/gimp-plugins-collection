@@ -23,6 +23,7 @@ ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
 tar czf ../${TARGET_PLUGIN}-Gimp-2.10.6-OSX.tgz ??* || exit 1
 cd ..
+cp /tmp/commit-${TARGET_PLUGIN}-new.hash ${TARGET_PLUGIN}-Gimp-2.10.6-OSX.hash
 
 if [ "x" = "y" ]; then
 rm -rf plugins-fixed
@@ -39,4 +40,5 @@ fi
 
 wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
 bash  ./upload_rotate.sh "continuous" *.tgz >& /dev/null
+bash  ./upload_rotate.sh "continuous" *.hash >& /dev/null
 

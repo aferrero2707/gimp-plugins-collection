@@ -7,6 +7,7 @@ if [ ! -e gmic-qt ]; then
 	echo "... finished"
 fi
 cd gmic-qt || exit 1
+git rev-parse --verify HEAD > /tmp/commit-GMIC-new.hash || exit 1
 if [ ! -e gmic-clone ]; then
 	#echo "Running git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone"
 	#git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone || exit 1
@@ -14,6 +15,9 @@ if [ ! -e gmic-clone ]; then
 	git clone https://github.com/dtschump/gmic.git gmic-clone || exit 1
 	echo "... finished"
 	patch -p1 < ../../GMIC/gmic-plugins-path.patch
+	cd gmic-clone || exit 1
+	git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash || exit 1
+	cd ..
 fi
 
 brew cask uninstall oclint
