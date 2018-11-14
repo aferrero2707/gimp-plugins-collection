@@ -12,8 +12,8 @@ HASH=$(cat assets.txt | grep "^GMIC-" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
 
 if [ -n "$HASH" ]; then
-	echo "curl -L https://github.com/${REPO_SLUG}/releases/tag/${RELEASE_TAG}/$HASH"
-	curl -L https://github.com/${REPO_SLUG}/releases/tag/${RELEASE_TAG}/$HASH > /tmp/commit-GMIC-old.hash 
+	echo "curl -L https://github.com/${REPO_SLUG}/releases/download/${RELEASE_TAG}/$HASH"
+	curl -L https://github.com/${REPO_SLUG}/releases/download/${RELEASE_TAG}/$HASH > /tmp/commit-GMIC-old.hash 
 	result=$?
 	if [ x"$result"	= "x0" ]; then
 		echo "commit-GMIC-old.hash:"; cat /tmp/commit-GMIC-old.hash
