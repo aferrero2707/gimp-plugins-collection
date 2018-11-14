@@ -30,6 +30,7 @@ git checkout -b GMIC
 git pull origin GMIC
 git merge master
 cat travis.yml.template | sed -e 's|%OS%|osx|g' | sed -e 's|%PLUGIN%|GMIC|g' > .travis.yml
+echo "$RANDOM" > random.txt
 git add -A
 git commit -m "Updated Travis configuration"
 git push https://aferrero2707:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git GMIC
