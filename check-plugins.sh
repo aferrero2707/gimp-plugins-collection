@@ -2,8 +2,7 @@
 
 export REPO_SLUG="aferrero2707/gimp-plugins-collection"
 export RELEASE_TAG=continuous
-ASSETS=$(bash ./get-assets.sh)
-echo "$ASSETS" > assets.txt
+bash ./get-assets.sh
 echo "ASSETS:"
 cat assets.txt
 
