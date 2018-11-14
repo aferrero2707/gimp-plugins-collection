@@ -1,7 +1,7 @@
 #! /bin/bash
 
-wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/osx-cache.tgz || exit 1
-tar xvf osx-cache.tgz || exit 1
+wget –quiet https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/osx-cache.tgz || exit 1
+tar xf osx-cache.tgz || exit 1
 
 mkdir -p build && cd build
 if [ -n "$TRAVIS" ]; then
