@@ -2,6 +2,14 @@
 
 PLUGIN=LiquidRescale
 
+rm -rf liblqr; git clone https://github.com/carlobaldassi/liblqr.git || exit 1
+cd liblqr || exit 1
+git rev-parse --verify HEAD > /tmp/commit-${PLUGIN}-new.hash
+cd ..
+rm -rf gimp-lqr-plugin; git clone https://github.com/carlobaldassi/gimp-lqr-plugin.git || exit 1
+cd gimp-lqr-plugin || exit 1
+git rev-parse --verify HEAD >> /tmp/commit-${PLUGIN}-new.hash
+
 HASH=$(cat assets.txt | grep "^${PLUGIN}-" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
 
@@ -25,7 +33,7 @@ cd /tmp/gimp-plugins-collection
 git checkout -b ${PLUGIN}
 git pull origin ${PLUGIN}
 git merge master
-cat travis.yml.template | sed -e 's|%OS%|osx|g' | sed -e 's|%PLUGIN%|${PLUGIN}|g' > .travis.yml
+cat travis.yml.template | sed -e 's|%OS%|osx|g' | sed -e "s|%PLUGIN%|${PLUGIN}|g" > .travis.yml
 echo "$RANDOM" > random.txt
 git add -A
 git commit -m "Updated Travis configuration"
