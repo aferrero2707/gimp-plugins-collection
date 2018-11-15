@@ -143,8 +143,8 @@ for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 		
 			if [ -n "$DYLIB2" ]; then
 				DYLIB2NAME=$(basename "$DYLIB2")
-				echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F2\""
-				install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F2"
+				echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F\""
+				install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F"
 			fi
 		fi
 		I=$((I+1))
