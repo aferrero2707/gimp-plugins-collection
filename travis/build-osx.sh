@@ -8,8 +8,10 @@ bash ./${TARGET_PLUGIN}/build-osx.sh || exit 1
 #exit
 
 rm -rf plugins-fixed
-curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O || exit 1
-hdiutil attach gimp-2.10.6-x86_64.dmg >& attach.log || exit 1
+#curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.6-x86_64.dmg -O || exit 1
+#hdiutil attach gimp-2.10.6-x86_64.dmg >& attach.log || exit 1
+curl -L https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.8-x86_64-1.dmg -O || exit 1
+hdiutil attach gimp-2.10.8-x86_64-1.dmg >& attach.log || exit 1
 export MOUNT_POINT=$(cat attach.log | tr "\t" "\n" | tail -n 1)
 export GIMP_BUNDLE="$(find "$MOUNT_POINT" -depth 1 -name "*.app" | tail -n 1)"
 rm -f /tmp/gimp.app
