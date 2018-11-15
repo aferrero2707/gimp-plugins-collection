@@ -121,7 +121,7 @@ done
 # remove version information for dependencies of plugin libraries
 for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 
-	echo "Fixing paths and library versions in \"%F\""
+	echo "Fixing paths and library versions in \"$F\""
 	DYLIST=$(otool -L "$F")
 	NDY=$(echo "$DYLIST" | wc -l)
 	echo "NDY: $NDY"
@@ -140,12 +140,12 @@ for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 		if [ -n "$TEST" ]; then
 			echo "../build/optool/build/Release/optool vreset -p \"$DYLIB\" -t \"$F\""
 			../build/optool/build/Release/optool vreset -p "$DYLIB" -t "$F"
-		fi
 		
-		if [ -n "$DYLIB2" ]; then
-			DYLIB2NAME=$(basename "$DYLIB2")
-			echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F2\""
-			install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F2"
+			if [ -n "$DYLIB2" ]; then
+				DYLIB2NAME=$(basename "$DYLIB2")
+				echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F2\""
+				install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F2"
+			fi
 		fi
 		I=$((I+1))
 	done
