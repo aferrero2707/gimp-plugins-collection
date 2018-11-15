@@ -116,3 +116,25 @@ install_name_tool -add_rpath "/Applications/$BUNDLE/Contents/Frameworks" "$F2"
 #install_name_tool -add_rpath "/tmp/lib-std" "../../PhFGimp/build/$f"
 
 done
+
+
+# remove version information for dependencies of plugin libraries
+for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
+
+	DYLIST=$(otool -L "$F")
+	NDY=$(echo "$DYLIST" | wc -l)
+	echo "NDY: $NDY"
+	
+	# remove all the version information for non-system libraries
+	I=2
+	while [ $I -le $NDY ]; do
+		LINE=$(echo "$DYLIST" | sed -n ${I}p)
+		DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
+		TEST=$(echo "$DYLIB" | grep '^@rpath/')
+		if [ -n "$TEST" ]; then
+			echo "../build/optool/build/Release/optool vreset -p \"$DYLIB\" -t \"$F\""
+			../build/optool/build/Release/optool vreset -p "$DYLIB" -t "$F"
+		fi
+		I=$((I+1))
+	done
+done
