@@ -121,7 +121,7 @@ done
 # remove version information for dependencies of plugin libraries
 for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 
-	echo "Fixing paths and library versions in \"%F\"
+	echo "Fixing paths and library versions in \"%F\""
 	DYLIST=$(otool -L "$F")
 	NDY=$(echo "$DYLIST" | wc -l)
 	echo "NDY: $NDY"
