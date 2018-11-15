@@ -121,6 +121,7 @@ done
 # remove version information for dependencies of plugin libraries
 for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 
+	echo "Fixing paths and library versions in \"%F\"
 	DYLIST=$(otool -L "$F")
 	NDY=$(echo "$DYLIST" | wc -l)
 	echo "NDY: $NDY"
@@ -130,10 +131,21 @@ for F in "../plugins-fixed/$PLUGIN/lib"/*.dylib; do
 	while [ $I -le $NDY ]; do
 		LINE=$(echo "$DYLIST" | sed -n ${I}p)
 		DYLIB=$(echo $LINE | sed -e 's/^[ \t]*//' | tr -s ' ' | tr ' ' '\n' | head -n 1)
+		PREFIX=$(basename "$DYLIB" | cut -d'.' -f 1)
+		echo "PREFIX: $PREFIX"
+		DYLIB2=$(find "$TARGET/Contents" -name "$PREFIX"*)
+		echo "DYLIB2: $DYLIB2"
+		
 		TEST=$(echo "$DYLIB" | grep '^@rpath/')
 		if [ -n "$TEST" ]; then
 			echo "../build/optool/build/Release/optool vreset -p \"$DYLIB\" -t \"$F\""
 			../build/optool/build/Release/optool vreset -p "$DYLIB" -t "$F"
+		fi
+		
+		if [ -n "$DYLIB2" ]; then
+			DYLIB2NAME=$(basename "$DYLIB2")
+			echo "install_name_tool -change \"$DYLIB\" \"@rpath/$DYLIB2NAME\" \"$F2\""
+			install_name_tool -change "$DYLIB" "@rpath/$DYLIB2NAME" "$F2"
 		fi
 		I=$((I+1))
 	done
