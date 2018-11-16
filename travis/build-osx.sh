@@ -1,6 +1,7 @@
 #! /bin/bash
 
 source ./environment-osx.sh
+set -x
 brew update
 mkdir -p plugins || exit 1
 bash ./build-common-osx.sh || exit 1
