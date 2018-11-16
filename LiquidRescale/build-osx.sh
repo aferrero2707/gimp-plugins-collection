@@ -1,5 +1,6 @@
 #! /bin/bash
 
+mkdir -p build || exit 1
 cd build
 
 (git clone https://github.com/carlobaldassi/liblqr.git && \
