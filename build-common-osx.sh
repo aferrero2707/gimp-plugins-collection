@@ -1,5 +1,6 @@
 #! /bin/bash
 
+set -x
 wget -q https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/osx-cache.tgz || exit 1
 echo "Extracting osx-cache.tgz..."
 ls -lh osx-cache.tgz
