@@ -9,6 +9,7 @@ cd ..
 rm -rf gimp-lqr-plugin; git clone https://github.com/carlobaldassi/gimp-lqr-plugin.git || exit 1
 cd gimp-lqr-plugin || exit 1
 git rev-parse --verify HEAD >> /tmp/commit-${PLUGIN}-new.hash
+cd ..
 
 HASH=$(cat assets.txt | grep "^${PLUGIN}-" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
