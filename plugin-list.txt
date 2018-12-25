@@ -1,2 +1,3 @@
 GMIC
 LiquidRescale
+Resynthesizer
