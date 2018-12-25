@@ -1,0 +1,19 @@
+language: generic
+
+os:
+  #- linux
+  - osx
+
+env:
+  - TARGET_PLUGIN=ResynthesizerPlugin
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update >& /dev/null && brew install ccache; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash ./travis/build-osx.sh; fi
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)$/
+    - /^(?i:unstable)$/
