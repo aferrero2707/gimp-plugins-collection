@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PLUGIN=Resynthesizer
+PLUGIN=ResynthesizerPlugin
 
 rm -rf resynthesizer; git clone https://github.com/bootchk/resynthesizer.git || exit 1
 cd resynthesizer || exit 1
