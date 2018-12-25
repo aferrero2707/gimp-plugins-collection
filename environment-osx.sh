@@ -24,9 +24,9 @@ export LIBRARY_PATH="$LD_LIBRARY_PATH"
 
 export LIBTOOLIZE=glibtoolize
 
-export CC="gcc -mmacosx-version-min=10.8 -fno-stack-protector -march=nocona -mno-sse3 -mtune=generic -I$PREFIX/include -I${HB_PREFIX}/include -I${HB_PREFIX}/opt/gettext/include -I/usr/X11/include"
-export CXX="g++ -mmacosx-version-min=10.8 -fno-stack-protector -march=nocona -mno-sse3 -mtune=generic -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
-export CFLAGS="-fno-stack-protector -O0 -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
+export CC="gcc -mmacosx-version-min=10.8 -fno-stack-protector -march=nocona -mno-sse3 -mtune=generic -Wno-deprecated -I$PREFIX/include -I${HB_PREFIX}/include -I${HB_PREFIX}/opt/gettext/include -I/usr/X11/include"
+export CXX="g++ -mmacosx-version-min=10.8 -fno-stack-protector -march=nocona -mno-sse3 -mtune=generic -Wno-deprecated -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
+export CFLAGS="-fno-stack-protector -O2 -Wno-deprecated -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
 export CPPFLAGS="$CFLAGS"
-export CXXFLAGS="-fno-stack-protector -O0 -stdlib=libc++ -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
+export CXXFLAGS="-fno-stack-protector -O2 -Wno-deprecated -stdlib=libc++ -I$PREFIX/include -I${HB_PREFIX}/opt/gettext/include -I${HB_PREFIX}/include -I/usr/X11/include"
 export LDFLAGS="-L$PREFIX/lib -L${HB_PREFIX}/lib -framework Cocoa"
