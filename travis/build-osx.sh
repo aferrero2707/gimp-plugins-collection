@@ -23,6 +23,7 @@ if [ -e "${TARGET_PLUGIN}/fix-dylib.sh" ]; then
 fi
 ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
+rm -f *-orig
 tar czf ../${TARGET_PLUGIN}-Gimp-2.10-OSX.tgz ??* || exit 1
 cd ..
 cp /tmp/commit-${TARGET_PLUGIN}-new.hash ${TARGET_PLUGIN}-Gimp-2.10-OSX.hash
