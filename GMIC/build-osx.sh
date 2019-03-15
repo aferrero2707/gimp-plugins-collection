@@ -36,7 +36,7 @@ QTPREFIX="qt"
 (cd $( brew --prefix )/Homebrew/Library/Taps/homebrew/homebrew-core && \
   git pull --unshallow && git checkout $HASH -- Formula/${QTPREFIX}.rb && \
   cat Formula/${QTPREFIX}.rb | sed -e 's|depends_on :mysql|depends_on "mysql-client"|g' | sed -e 's|depends_on :postgresql|depends_on "postgresql"|g' > /tmp/${QTPREFIX}.rb && cp /tmp/${QTPREFIX}.rb Formula/${QTPREFIX}.rb &&
-  brew install ${QTPREFIX} && brew link --force ${QTPREFIX}) || exit 1
+  cat Formula/${QTPREFIX}.rb && brew install ${QTPREFIX} && brew link --force ${QTPREFIX}) || exit 1
 
 #wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz || exit 1
 #(cd /usr/local/Cellar && \
