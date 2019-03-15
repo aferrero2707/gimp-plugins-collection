@@ -29,6 +29,7 @@ fi
 brew cask uninstall oclint
 brew install fftw curl zlib || exit 1
 
+if [ "x" = "y" ]; then
 #HASH=9ba3d6ef8891e5c15dbdc9333f857b13711d4e97 #qt@5.5
 #QTPREFIX="qt@5.5"
 HASH=13d52537d1e0e5f913de46390123436d220035f6 #qt 5.9
@@ -43,6 +44,9 @@ QTPREFIX="qt"
 #  wget https://github.com/aferrero2707/gimp-plugins-collection/releases/download/continuous/qt--5.6.3.yosemite.bottle.tar.gz && \
 #  tar xf qt--5.6.3.yosemite.bottle.tar.gz && brew link --force qt) || exit 1
 #brew link ${QTPREFIX} --force || exit 1
+else
+  brew install qt || exit 1
+fi
 
 export PATH="/usr/local/opt/curl/bin:/usr/local/opt/zlib/bin:/usr/local/opt/${QTPREFIX}/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/${QTPREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH"
