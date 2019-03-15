@@ -29,7 +29,7 @@ fi
 brew cask uninstall oclint
 brew install fftw curl zlib || exit 1
 
-if [ "x" = "y" ]; then
+if [ "x" = "x" ]; then
 #HASH=9ba3d6ef8891e5c15dbdc9333f857b13711d4e97 #qt@5.5
 #QTPREFIX="qt@5.5"
 HASH=13d52537d1e0e5f913de46390123436d220035f6 #qt 5.9
