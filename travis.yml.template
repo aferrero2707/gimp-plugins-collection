@@ -4,6 +4,8 @@ os:
   #- linux
   - %OS%
 
+osx_image: xcode6.4
+
 env:
   - TARGET_PLUGIN=%PLUGIN%
 
