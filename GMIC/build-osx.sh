@@ -46,6 +46,7 @@ QTPREFIX="qt"
 #brew link ${QTPREFIX} --force || exit 1
 else
   brew install qt || exit 1
+  brew link --force qt || exit 1
 fi
 
 export PATH="/usr/local/opt/curl/bin:/usr/local/opt/zlib/bin:/usr/local/opt/${QTPREFIX}/bin:$PATH"
