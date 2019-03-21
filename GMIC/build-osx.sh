@@ -69,6 +69,7 @@ export LD_LIBRARY_PATH="/usr/local/opt/curl/lib:/usr/local/opt/zlib/lib:/usr/loc
 echo "Generating GMIC headers"
 make -C gmic-clone/src CImg.h gmic_stdlib.h || exit 1
 
+sed -i 's|-Ofast|-O3|g' gmic_qt.pro
 
 echo "Compiling the Qt plug-in"
 qmake QMAKE_CFLAGS+="${CFLAGS} -O2" QMAKE_CXXFLAGS+="${CXXFLAGS} -O2" QMAKE_LFLAGS+="${LDFLAGS} -L/usr/X11/lib -lX11 " CONFIG+=Release HOST=gimp GMIC_PATH=gmic-clone/src || exit 1
