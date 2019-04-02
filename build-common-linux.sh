@@ -11,3 +11,19 @@ fi
 rm -rf /usr/local/gimp
 ln -s "$(pwd)/squashfs-root/usr" /usr/local/gimp || exit 1
 
+echo "ls -l /usr/local/gimp"
+ls -l /usr/local/gimp
+
+echo "ls -l /usr/local/gimp/lib"
+ls -l /usr/local/gimp/lib
+
+cd /usr/local/gimp/lib
+for L in $(find . -type f -name "*.so.*"); do
+
+	L2=$(echo "$L" | sed -e 's|\(.*\).so.*|\1.so|g')
+	if [ ! -e "$L2" ]; then
+		echo "ln -s \"$L\" \"$L2\""
+		ln -s "$L" "$L2"
+	fi
+
+done
