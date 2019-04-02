@@ -24,5 +24,11 @@ qmake-qt5 CONFIG+=Release HOST=gimp GMIC_PATH=gmic-clone/src && \
 sed -i 's|^CURL_CFLAGS = \(.*\)|#CURL_CFLAGS = \1|g' gmic-clone/src/Makefile && \
 sed -i 's|^CURL_LIBS = \(.*\)|#CURL_LIBS = \1|g' gmic-clone/src/Makefile && \
 make -j 1 && make install) || exit 1
-mkdir -p "$gimplibdir/plug-ins" || exit 1
-cp -a /work/gmic-qt/gmic_gimp_qt "$gimplibdir/plug-ins" || exit 1
+
+#mkdir -p "$gimplibdir/plug-ins" || exit 1
+#cp -a /work/gmic-qt/gmic_gimp_qt "$gimplibdir/plug-ins" || exit 1
+
+mkdir -p "/work/gmic-plugin" || exit 1
+cp -a /work/build/gmic-qt/gmic_gimp_qt "/work/gmic-plugin" || exit 1
+cd /work/gmic-plugin || exit 1
+copy_deps2; copy_deps2; copy_deps2;
