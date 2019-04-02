@@ -13,6 +13,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update >& /dev/null && brew install ccache; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash ./travis/build-osx.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh; fi
 
 branches:
   except:
