@@ -25,6 +25,12 @@ sed -i 's|^CURL_CFLAGS = \(.*\)|#CURL_CFLAGS = \1|g' gmic-clone/src/Makefile && 
 sed -i 's|^CURL_LIBS = \(.*\)|#CURL_LIBS = \1|g' gmic-clone/src/Makefile && \
 make -j 1 && make install) || exit 1
 
+(cd /work/build/gmic-qt && git rev-parse --verify HEAD > /tmp/commit-GMIC-new.hash && \
+ cd gmic-clone && git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash && \
+ rm -rf CImg-clone && git clone https://github.com/dtschump/CImg.git CImg-clone && \
+ cd CImg-clone && git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash)
+
+
 #mkdir -p "$gimplibdir/plug-ins" || exit 1
 #cp -a /work/gmic-qt/gmic_gimp_qt "$gimplibdir/plug-ins" || exit 1
 
@@ -100,4 +106,5 @@ export DOCKER_BUILD=true
 generate_type2_appimage
 
 mkdir -p /sources/out
-cp -a ../out/*.AppImage /sources/out/GMIC-plugin-${VERSION}-${ARCH}.AppImage
+cp -a ../out/*.AppImage /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.AppImage
+cp -a /tmp/commit-GMIC-new.hash /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.hash
