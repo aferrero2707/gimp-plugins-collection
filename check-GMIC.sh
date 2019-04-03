@@ -12,8 +12,8 @@ cd CImg || exit 1
 git rev-parse --verify HEAD >> /tmp/commit-GMIC-new.hash
 cd ..
 
-#for OS in "osx" "linux"; do
-for OS in "linux"; do
+for OS in "osx" "linux"; do
+#for OS in "linux"; do
 
 HASH=$(cat assets.txt | grep "^GMIC-" | grep "-${OS}" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
