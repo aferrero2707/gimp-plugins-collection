@@ -1,0 +1,20 @@
+language: generic
+
+os: linux
+
+env:
+  - TARGET_PLUGIN=%PLUGIN%
+
+before_install:
+  - bash ./travis/build-osx.sh; fi
+  - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
+  - ls -lh out/*.*
+  - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+  - bash  ./upload_rotate.sh "continuous" out/*.AppImage >& /dev/null
+  - bash  ./upload_rotate.sh "continuous" out/*.hash >& /dev/null
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)$/
+    - /^(?i:unstable)$/

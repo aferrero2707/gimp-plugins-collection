@@ -24,22 +24,9 @@ fi
 ls plugins-fixed || exit 1
 cd plugins-fixed || exit 1
 rm -f *-orig
-tar czf ../${TARGET_PLUGIN}-Gimp-2.10-OSX.tgz ??* || exit 1
+tar czf ../${TARGET_PLUGIN}-Gimp-2.10-osx.tgz ??* || exit 1
 cd ..
 cp /tmp/commit-${TARGET_PLUGIN}-new.hash ${TARGET_PLUGIN}-Gimp-2.10-osx.hash
-
-if [ "x" = "y" ]; then
-rm -rf plugins-fixed
-curl -L https://www.partha.com/downloads/McGimp-2.10.6.app.zip -O
-unzip McGimp-2.10.6.app.zip
-rm -f /tmp/gimp.app
-ln -s "$(pwd)/McGimp-2.10.6.app" /tmp/gimp.app
-bash ./fix-dylib.sh ${TARGET_PLUGIN} "McGimp-2.10.6.app"
-ls plugins-fixed
-cd plugins-fixed
-tar czvf ../${TARGET_PLUGIN}-McGimp-2.10.6-osx.tgz ??*
-cd ..
-fi
 
 wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
 bash  ./upload_rotate.sh "continuous" *.tgz >& /dev/null
