@@ -1,19 +1,17 @@
 language: generic
 
-os:
-  #- linux
-  - $OS
-
-osx_image: xcode8.3
+os: linux
 
 env:
   - TARGET_PLUGIN=GMIC
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update >& /dev/null && brew install ccache; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash ./travis/build-osx.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh; fi
+  - bash ./travis/build-osx.sh; fi
+  - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
+  - ls -lh out/*.*
+  - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
+  - bash  ./upload_rotate.sh "continuous" out/*.AppImage >& /dev/null
+  - bash  ./upload_rotate.sh "continuous" out/*.hash >& /dev/null
 
 branches:
   except:
