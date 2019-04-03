@@ -41,7 +41,7 @@ cd /tmp/gimp-plugins-collection
 git checkout -b GMIC-${OS}
 git pull origin GMIC-${OS}
 git merge master
-cat travis.yml.template | sed -e 's|%OS%|$OS|g' | sed -e 's|%PLUGIN%|GMIC|g' > .travis.yml
+cat travis.yml.template-${OS} | sed -e 's|%PLUGIN%|GMIC|g' > .travis.yml
 echo "$RANDOM" > random.txt
 git add -A
 git commit -m "Updated Travis configuration"
