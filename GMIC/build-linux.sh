@@ -99,12 +99,14 @@ echo "Building AppImage..."
 pwd
 rm -rf ../out
 
-export VERSION=$(grep "define gmic_version " /work/build/gmic-qt/gmic-clone/src/gmic.h | cut -d' ' -f3)-$(date +%Y%m%d)
+export VERSION=$(grep "define gmic_version " /work/build/gmic-qt/gmic-clone/src/gmic.h | cut -d' ' -f3)
 export ARCH="x86_64"
 export NO_GLIBC_VERSION=true
 export DOCKER_BUILD=true
 generate_type2_appimage
 
 mkdir -p /sources/out
-cp -a ../out/*.AppImage /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.AppImage
-cp -a /tmp/commit-GMIC-new.hash /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.hash
+#cp -a ../out/*.AppImage /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.AppImage
+#cp -a /tmp/commit-GMIC-new.hash /sources/out/GMIC-${VERSION}-Gimp-2.10-$(date +%Y%m%d)-linux.hash
+cp -a ../out/*.AppImage /sources/out/GMIC-Gimp-2.10-linux.AppImage
+cp -a /tmp/commit-GMIC-new.hash /sources/out/GMIC-Gimp-2.10-linux.hash
