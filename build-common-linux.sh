@@ -1,6 +1,8 @@
 #! /bin/bash
 
-AI=GIMP_AppImage-git-2.10.7-20181009-x86_64.AppImage
+#AI=GIMP_AppImage-git-2.10.7-20181009-x86_64.AppImage
+#AI=GIMP_AppImage-git-2.10.9-20181206-x86_64.AppImage
+AI=GIMP_AppImage-release-2.10.8-x86_64.AppImage
 cd /tmp || exit 1
 if [ ! -e $AI ]; then
 	rm -rf squashfs-root

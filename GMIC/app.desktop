@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GMIC
+Exec=gmic_gimp_qt
+Icon=GMIC
+Categories=Graphics;2DGraphics;RasterGraphics;

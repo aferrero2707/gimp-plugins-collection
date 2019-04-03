@@ -28,7 +28,76 @@ make -j 1 && make install) || exit 1
 #mkdir -p "$gimplibdir/plug-ins" || exit 1
 #cp -a /work/gmic-qt/gmic_gimp_qt "$gimplibdir/plug-ins" || exit 1
 
-mkdir -p "/work/gmic-plugin" || exit 1
-cp -a /work/build/gmic-qt/gmic_gimp_qt "/work/gmic-plugin" || exit 1
-cd /work/gmic-plugin || exit 1
+
+
+source /work/appimage-helper-scripts/functions.sh
+
+# copy the list of libraries that have to be excluded from the bundle
+export APPROOT=/work/gmic-plugin
+export APP="GMIC"
+export APPDIR="${APPROOT}/$APP.AppDir"
+(rm -rf "${APPROOT}" && mkdir -p "${APPROOT}/$APP.AppDir") || exit 1
+cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
+
+
+# enter the AppImage bundle
+mkdir -p "$APPDIR/gmic_qt/plug-ins"
+cd "$APPDIR/gmic_qt" || exit 1
+cp -a /work/build/gmic-qt/gmic_gimp_qt plug-ins || exit 1
+
+
+
+# Copy Qt5 plugins
+QT5PLUGINDIR=$(pkg-config --variable=plugindir Qt5)
+if [ x"$QT5PLUGINDIR" != "x" ]; then
+  mkdir -p "usr/lib/qt5/plugins"
+  cp -a "$QT5PLUGINDIR"/* "usr/lib/qt5/plugins"
+fi
+
 copy_deps2; copy_deps2; copy_deps2;
+
+
+# Remove unneeded libraries
+delete_blacklisted2
+
+
+cd "$APPDIR/gmic_qt" || exit 1
+mkdir -p scripts || exit 1
+cp -a "${STARTUP_SCRIPT}" scripts/startup.sh || exit 1
+
+
+cd "$APPDIR/gmic_qt/usr/lib" || exit 1
+for L in $(find . -name "*.so*"); do
+
+	echo "checking $GIMP_PREFIX/lib/$L"
+	if [ -e "$GIMP_PREFIX/lib/$L" ]; then
+		echo "rm -f $L"
+		rm -f "$L"
+	fi
+
+done
+
+
+cd "${APPDIR}" || exit 1
+cp -a "${APPRUN_SCRIPT}" AppRun || exit 1
+cp -a "${DESKTOP_FILE}" GMIC.desktop || exit 1
+cp -a "${ICON_FILE}" GMIC.png || exit 1
+
+
+
+
+# Go out of AppImage
+cd ..
+
+echo "Building AppImage..."
+pwd
+rm -rf ../out
+
+export VERSION=$(grep "define gmic_version " /work/build/gmic-qt/gmic-clone/src/gmic.h | cut -d' ' -f3)-$(date +%Y%m%d)
+export ARCH="x86_64"
+export NO_GLIBC_VERSION=true
+export DOCKER_BUILD=true
+generate_type2_appimage
+
+mkdir -p /sources/out
+cp -a ../out/*.AppImage /sources/out/GMIC-plugin-${VERSION}-${ARCH}.AppImage
