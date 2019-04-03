@@ -6,7 +6,6 @@ env:
   - TARGET_PLUGIN=%PLUGIN%
 
 before_install:
-  - bash ./travis/build-osx.sh; fi
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
   - ls -lh out/*.*
   - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
