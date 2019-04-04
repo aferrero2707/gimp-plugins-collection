@@ -17,6 +17,7 @@ for OS in "osx" "linux"; do
 HASH=$(cat assets.txt | grep "^${PLUGIN}-" | grep "${OS}" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
 
+uptodate=0
 if [ -n "$HASH" ]; then
 	echo "curl -L https://github.com/${REPO_SLUG}/releases/download/${RELEASE_TAG}/$HASH"
 	curl -L https://github.com/${REPO_SLUG}/releases/download/${RELEASE_TAG}/$HASH > /tmp/commit-${PLUGIN}-old.hash 
@@ -26,9 +27,11 @@ if [ -n "$HASH" ]; then
 		echo "commit-${PLUGIN}-new.hash:"; cat /tmp/commit-${PLUGIN}-new.hash
 		diff -q /tmp/commit-${PLUGIN}-new.hash /tmp/commit-${PLUGIN}-old.hash
 		result=$?
-		if [ x"$result"	= "x0" ]; then exit; fi
+		if [ x"$result"	= "x0" ]; then uptodate=1; fi
 	fi
 fi
+
+if [ x"$uptodate" = "x1" ]; then continue; fi
 
 echo "Triggering rebuild of Liquid rescale"
 
