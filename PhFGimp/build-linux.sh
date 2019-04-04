@@ -4,6 +4,8 @@ gimplibdir=$(pkg-config --variable=gimplibdir gimp-2.0)
 echo "gimplibdir: $gimplibdir"
 if [ -z "$gimplibdir" ]; then exit 1; fi
 
+yum install -y exiv2-devel || exit 1
+
 mkdir -p /work/build || exit 1
 cd /work/build || exit 1
 

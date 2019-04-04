@@ -2,6 +2,7 @@
 Version=1.0
 Type=Application
 Name=GMIC
-Exec=gmic_gimp_qt
-Icon=GMIC
+Exec=PhFGimp
+Icon=PhFGimp
 Categories=Graphics;2DGraphics;RasterGraphics;
+Comment="PhotoFlow GIMP plug-in"
