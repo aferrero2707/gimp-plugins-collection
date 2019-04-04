@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=GMIC
+Name=PhFGimp
 Exec=PhFGimp
 Icon=PhFGimp
 Categories=Graphics;2DGraphics;RasterGraphics;

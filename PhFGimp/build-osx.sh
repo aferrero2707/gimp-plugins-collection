@@ -3,8 +3,9 @@
 cd build
 if [ ! -e PhFGimp ]; then
 	(git clone https://github.com/aferrero2707/PhFGimp.git) || exit 1
-	(cd PhFGimp && mkdir -p build && cd build && rm -f CMakeCache.txt && cmake -DCMAKE_SKIP_RPATH=ON .. && make VERBOSE=1 install)
 fi
+(cd PhFGimp && git rev-parse --verify HEAD > /tmp/commit-PhFGimp-new.hash)
+(cd PhFGimp && mkdir -p build && cd build && rm -f CMakeCache.txt && cmake -DCMAKE_SKIP_RPATH=ON .. && make VERBOSE=1 install)
 
 
 pwd
