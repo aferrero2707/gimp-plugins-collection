@@ -32,7 +32,7 @@ cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
 # enter the AppImage bundle
 mkdir -p "$APPDIR/ResynthesizerPlugin/plug-ins"
 cd "$APPDIR/ResynthesizerPlugin" || exit 1
-cp -a /usr/local/lib/gimp/2.0/plug-ins/resynthesizer* plug-ins
+cp -a "$gimplibdir/plug-ins"/resynthesizer* plug-ins
 for P in plugin-heal-selection.py plugin-resynth-sharpen.py plugin-resynth-enlarge.py plugin-uncrop.py plugin-render-texture.py plugin-map-style.py plugin-heal-transparency.py plugin-resynth-fill-pattern.py; do
 	cp -a "/usr/local/lib/gimp/2.0/plug-ins/$P" plug-ins
 done
