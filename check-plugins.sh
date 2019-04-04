@@ -6,6 +6,6 @@ bash ./get-assets.sh
 echo "ASSETS:"
 cat assets.txt
 
-while IFS='' read -r line || [[ -n "$line" ]]; do 
-	bash ./check-${line}.sh
+while IFS='' read -r line || [[ -n "$line" ]]; do
+	if [ -e ./check-${line}.sh ]; then bash ./check-${line}.sh; fi
 done < plugin-list.txt
