@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ResynthesizerPlugin
+Exec=ResynthesizerPlugin
+Icon=ResynthesizerPlugin
+Categories=Graphics;2DGraphics;RasterGraphics;
+Comment="Resynthesizer GIMP plug-in"
