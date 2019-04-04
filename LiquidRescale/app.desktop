@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LiquidRescale
+Exec=LiquidRescale
+Icon=LiquidRescale
+Categories=Graphics;2DGraphics;RasterGraphics;
+Comment="LiquidRescale GIMP plug-in"
