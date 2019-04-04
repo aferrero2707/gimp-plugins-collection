@@ -1,4 +1,4 @@
-GMIC
-PhFGimp
+_GMIC
+_PhFGimp
 _LiquidRescale
 ResynthesizerPlugin
