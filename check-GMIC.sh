@@ -36,7 +36,7 @@ if [ x"$uptodate" = "x1" ]; then continue; fi
 
 echo "Triggering rebuild of GMIC under $OS"
 
-WD=$(PWD)
+WD=$(pwd)
 git clone -b master https://github.com/aferrero2707/gimp-plugins-collection.git /tmp/gimp-plugins-collection
 cd /tmp/gimp-plugins-collection
 git checkout -b GMIC-${OS}
