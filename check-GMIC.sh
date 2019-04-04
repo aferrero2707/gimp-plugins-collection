@@ -15,7 +15,7 @@ cd ..
 for OS in "osx" "linux"; do
 #for OS in "linux"; do
 
-HASH=$(cat assets.txt | grep "^GMIC-" | grep "-${OS}" | grep '.hash$')
+HASH=$(cat assets.txt | grep "^GMIC-" | grep "${OS}" | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
 
 uptodate=0
@@ -36,6 +36,7 @@ if [ x"$uptodate" = "x1" ]; then continue; fi
 
 echo "Triggering rebuild of GMIC under $OS"
 
+WD=$(PWD)
 git clone -b master https://github.com/aferrero2707/gimp-plugins-collection.git /tmp/gimp-plugins-collection
 cd /tmp/gimp-plugins-collection
 git checkout -b GMIC-${OS}
@@ -46,5 +47,7 @@ echo "$RANDOM" > random.txt
 git add -A
 git commit -m "Updated Travis configuration"
 git push https://aferrero2707:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git GMIC-${OS}
+
+cd "$WD" || exit 1
 
 done

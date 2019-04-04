@@ -10,7 +10,7 @@ cd ..
 for OS in "osx" "linux"; do
 #for OS in "linux"; do
 
-HASH=$(cat assets.txt | grep "^${PLUGIN}-" | grep "-${OS}" | grep '.hash$')
+HASH=$(cat assets.txt | grep "^${PLUGIN}-" | grep "${OS}." | grep '.hash$')
 echo "Commit HASH: \"$HASH\""
 
 if [ -n "$HASH" ]; then
@@ -28,6 +28,7 @@ fi
 
 echo "Triggering rebuild of Resynthesizer"
 
+WD=$(PWD)
 git clone -b master https://github.com/aferrero2707/gimp-plugins-collection.git /tmp/gimp-plugins-collection
 cd /tmp/gimp-plugins-collection
 git checkout -b ${PLUGIN}-${OS}
@@ -38,5 +39,7 @@ echo "$RANDOM" > random.txt
 git add -A
 git commit -m "Updated Travis configuration"
 git push https://aferrero2707:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git ${PLUGIN}-${OS}
+
+cd "$WD" || exit 1
 
 done
