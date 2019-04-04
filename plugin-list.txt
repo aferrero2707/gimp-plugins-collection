@@ -1,4 +1,4 @@
 GMIC
 PhFGimp
 _LiquidRescale
-_ResynthesizerPlugin
+ResynthesizerPlugin
