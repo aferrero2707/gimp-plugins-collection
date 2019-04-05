@@ -46,8 +46,7 @@ cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
 # enter the AppImage bundle
 mkdir -p "$APPDIR/${PLUGIN}/plug-ins"
 cd "$APPDIR/${PLUGIN}" || exit 1
-cp -a "$gimplibdir/plug-ins"/gimp-lqr-plugin plug-ins
-cp -a "$gimplibdir/plug-ins"/plug_in_lqr_iter plug-ins
+cp -a "$gimplibdir/plug-ins"/nufraw-gimp plug-ins
 
 copy_deps2; copy_deps2; copy_deps2;
 
