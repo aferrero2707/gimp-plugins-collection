@@ -42,7 +42,10 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 
 		if [ -e ./${PLUGIN}/build-${OS}.sh ]; then
 
-			cat travis.yml.template-${OS} | sed -e 's|%PLUGIN%|${PLUGIN}|g' > .travis.yml
+			git rm random.txt
+			git add -A
+			git commit -m "Removed random.txt"
+			cat travis.yml.template-${OS} | sed -e "s|%PLUGIN%|${PLUGIN}|g" > .travis.yml
 			echo "$RANDOM" > random.txt
 			git add -A
 			git commit -m "Updated Travis configuration"
