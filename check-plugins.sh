@@ -39,11 +39,15 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 		git checkout -b ${PLUGIN}-${OS}
 		git pull origin ${PLUGIN}-${OS}
 		git merge master
-		cat travis.yml.template-${OS} | sed -e 's|%PLUGIN%|${PLUGIN}|g' > .travis.yml
-		echo "$RANDOM" > random.txt
-		git add -A
-		git commit -m "Updated Travis configuration"
-		git push https://aferrero2707:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git ${PLUGIN}-${OS}
+
+		if [ -e ./${PLUGIN}/build-${OS}.sh ]; then
+
+			cat travis.yml.template-${OS} | sed -e 's|%PLUGIN%|${PLUGIN}|g' > .travis.yml
+			echo "$RANDOM" > random.txt
+			git add -A
+			git commit -m "Updated Travis configuration"
+			git push https://aferrero2707:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git ${PLUGIN}-${OS}
+		fi
 
 		cd "$WD" || exit 1
 
