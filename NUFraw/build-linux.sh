@@ -14,7 +14,7 @@ mkdir -p /work/build || exit 1
 cd /work/build || exit 1
 
 
-yum install -y gnome-common
+yum install -y gnome-common exiv2-devel lensfun-devel
 
 if [ ! -e gtkimageview ]; then
 	(git clone https://github.com/aferrero2707/gtkimageview.git) || exit 1
@@ -46,7 +46,8 @@ cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
 # enter the AppImage bundle
 mkdir -p "$APPDIR/${PLUGIN}/plug-ins"
 cd "$APPDIR/${PLUGIN}" || exit 1
-cp -a "$gimplibdir/plug-ins"/nufraw-gimp plug-ins
+cp -a /usr/local/lib/gimp/2.0/plug-ins/nufraw-gimp plug-ins
+#cp -a "$gimplibdir/plug-ins"/nufraw-gimp plug-ins
 
 copy_deps2; copy_deps2; copy_deps2;
 
