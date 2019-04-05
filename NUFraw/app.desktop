@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NUFraw
+Exec=NUFraw
+Icon=NUFraw
+Categories=Graphics;2DGraphics;RasterGraphics;
+Comment="NUFraw GIMP plug-in"
