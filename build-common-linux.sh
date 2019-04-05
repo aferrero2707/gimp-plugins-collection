@@ -29,3 +29,7 @@ for L in $(find . -type f -name "*.so.*"); do
 	fi
 
 done
+
+mkdir -p /usr/local/lib/pkgconfig
+ln -s libbabl*.so libgegl*.so* libgimp*.so* /usr/local/lib
+ln -s pkgconfig/*.pc /usr/local/lib/pkgconfig
