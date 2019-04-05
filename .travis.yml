@@ -4,7 +4,7 @@ os: osx
 osx_image: xcode8.3
 
 env:
-  - TARGET_PLUGIN=${PLUGIN}
+  - TARGET_PLUGIN=GMIC
 
 before_install:
   - brew update >& /dev/null && brew install ccache
