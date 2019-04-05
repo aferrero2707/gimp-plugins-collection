@@ -2,3 +2,4 @@ GMIC
 PhFGimp
 LiquidRescale
 ResynthesizerPlugin
+NUFraw
