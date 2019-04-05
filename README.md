@@ -3,6 +3,18 @@
 
 ## Installation instructions
 
+### Linux (AppImage)
+===========
+To install a plug-in, download the corresponding AppImage package, make it executable with 
+```
+chmod u+x
+```
+and run it.
+This will automatically copy the required files into 
+```
+$HOME/.config/GIMP-AppImage/2.10/plug-ins`
+```
+
 ### MacOS
 
 To install a plug-in, extract the contents of the `.tgz` archive into the user's GIMP plug-ins folder:
