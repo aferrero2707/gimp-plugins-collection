@@ -1,5 +1,6 @@
 language: generic
 
+<<<<<<< HEAD
 os: linux
 
 env:
@@ -11,6 +12,18 @@ before_install:
   - wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
   - bash  ./upload_rotate.sh "continuous" out/*.AppImage >& /dev/null
   - bash  ./upload_rotate.sh "continuous" out/*.hash >& /dev/null
+=======
+os: osx
+osx_image: xcode8.3
+
+env:
+  - TARGET_PLUGIN=ResynthesizerPlugin
+
+before_install:
+  - brew update >& /dev/null && brew install ccache
+  - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+  - bash ./travis/build-osx.sh
+>>>>>>> 6ce44fd25caf64b56cc2133e270c5b4f94eb7afc
 
 branches:
   except:
