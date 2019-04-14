@@ -4,7 +4,7 @@
 ## Installation instructions
 
 ### Linux (AppImage)
-===========
+
 To install a plug-in, download the corresponding AppImage package, make it executable with 
 ```
 chmod u+x
