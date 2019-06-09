@@ -60,6 +60,9 @@ cd "$APPDIR/${PLUGIN}" || exit 1
 mkdir -p scripts || exit 1
 cp -a "${STARTUP_SCRIPT}" scripts/startup.sh || exit 1
 
+echo "export GIMP_NUFRAW_PLUGIN_EXISTS=1" > scripts/set_exists.sh
+echo "if [ x\"${GIMP_NUFRAW_PLUGIN_EXISTS}\" = \"x1\" ]; then exit 1; fi; exit 0;" > scripts/check_exists.sh
+
 
 cd "$APPDIR/${PLUGIN}/usr/lib" || exit 1
 for L in $(find . -name "*.so*"); do

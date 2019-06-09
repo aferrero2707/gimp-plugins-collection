@@ -71,6 +71,9 @@ cd "$APPDIR/gmic_qt" || exit 1
 mkdir -p scripts || exit 1
 cp -a "${STARTUP_SCRIPT}" scripts/startup.sh || exit 1
 
+echo "export GIMP_GMIC_PLUGIN_EXISTS=1" > scripts/set_exists.sh
+echo "if [ x\"${GIMP_GMIC_PLUGIN_EXISTS}\" = \"x1\" ]; then exit 1; fi; exit 0;" > scripts/check_exists.sh
+
 
 cd "$APPDIR/gmic_qt/usr/lib" || exit 1
 for L in $(find . -name "*.so*"); do

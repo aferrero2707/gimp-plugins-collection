@@ -5,6 +5,9 @@ DIR="`( cd \"$DIR\" && readlink -f $(pwd) )`"
 echo "DIR: $DIR"
 export APPDIR=$DIR
 
-mkdir -p "$HOME/.config/GIMP-AppImage/2.10/plug-ins" || exit 1
-rm -rf "$HOME/.config/GIMP-AppImage/2.10/plug-ins/NUFraw"
-cp -a "$APPDIR/NUFraw" "$HOME/.config/GIMP-AppImage/2.10/plug-ins" || exit 1
+DESTDIR="$HOME/.config/GIMP-AppImage/2.10/plug-ins"
+if [ $# -gt 0 ]; then DESTDIR="$1"; fi
+mkdir -p "$DESTDIR" || exit 1
+
+rm -rf "$DESTDIR/NUFraw"
+cp -a "$APPDIR/NUFraw" "$DESTDIR" || exit 1

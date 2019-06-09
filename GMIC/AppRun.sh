@@ -5,5 +5,9 @@ DIR="`( cd \"$DIR\" && readlink -f $(pwd) )`"
 echo "DIR: $DIR"
 export APPDIR=$DIR
 
-mkdir -p "$HOME/.config/GIMP-AppImage/2.10/plug-ins"
-cp -a "$APPDIR/gmic_qt" "$HOME/.config/GIMP-AppImage/2.10/plug-ins"
+DESTDIR="$HOME/.config/GIMP-AppImage/2.10/plug-ins"
+if [ $# -gt 0 ]; then DESTDIR="$1"; fi
+mkdir -p "$DESTDIR" || exit 1
+
+rm -rf "$DESTDIR/gmic_qt"
+cp -a "$APPDIR/gmic_qt" "$DESTDIR"
