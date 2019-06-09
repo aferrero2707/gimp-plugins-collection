@@ -3,11 +3,7 @@ language: generic
 os: linux
 
 env:
-<<<<<<< HEAD
-  - TARGET_PLUGIN=ResynthesizerPlugin
-=======
   - TARGET_PLUGIN=NUFraw
->>>>>>> bbc2f121b8d8277f6dd7c4213bd2626d7e2ff8d7
 
 before_install:
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
