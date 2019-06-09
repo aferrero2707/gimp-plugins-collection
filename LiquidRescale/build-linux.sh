@@ -44,7 +44,7 @@ cd "$APPDIR/${PLUGIN}" || exit 1
 cp -a "$gimplibdir/plug-ins"/gimp-lqr-plugin plug-ins
 cp -a "$gimplibdir/plug-ins"/plug_in_lqr_iter plug-ins
 
-copy_deps2; copy_deps2; copy_deps2;
+copy_deps3; copy_deps2; copy_deps2;
 
 
 # Remove unneeded libraries
