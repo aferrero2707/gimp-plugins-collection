@@ -7,7 +7,7 @@ gimplibdir=$(pkg-config --variable=gimplibdir gimp-2.0)
 echo "gimplibdir: $gimplibdir"
 if [ -z "$gimplibdir" ]; then exit 1; fi
 
-export LD_LIBRARY_PATH="/usr/local/lib/pkgconfig:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 
