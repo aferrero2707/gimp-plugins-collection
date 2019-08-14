@@ -41,7 +41,7 @@ fi
 
 
 if [ ! -e babl ]; then
-	(git clone -b BABL_0_1_70 https://git.gnome.org/browse/babl) || exit 1
+	(git clone -b BABL_0_1_68 https://git.gnome.org/browse/babl) || exit 1
 	(cd babl && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --enable-sse3=no --enable-sse4_1=no --enable-f16c=no --enable-altivec=no --prefix=${PREFIX} && make && make -j 3 install) || exit 1
 fi
 
