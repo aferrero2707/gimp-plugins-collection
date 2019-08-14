@@ -7,4 +7,3 @@ tar czf osx-cache.tgz inst
 
 wget -c https://github.com/aferrero2707/uploadtool/raw/master/upload_rotate.sh
 bash  ./upload_rotate.sh "continuous" *.tgz
-
