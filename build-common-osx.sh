@@ -41,19 +41,19 @@ fi
 
 
 if [ ! -e babl ]; then
-	(git clone -b BABL_0_1_56 https://git.gnome.org/browse/babl) || exit 1
+	(git clone -b BABL_0_1_70 https://git.gnome.org/browse/babl) || exit 1
 	(cd babl && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --enable-sse3=no --enable-sse4_1=no --enable-f16c=no --enable-altivec=no --prefix=${PREFIX} && make && make -j 3 install) || exit 1
 fi
 
 if [ ! -e gegl ]; then
-	(git clone -b GEGL_0_4_8 https://git.gnome.org/browse/gegl) || exit 1
+	(git clone -b GEGL_0_4_16 https://git.gnome.org/browse/gegl) || exit 1
 	(cd gegl && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-docs --prefix=${PREFIX} --enable-gtk-doc-html=no --enable-introspection=no && make V=1 -j 3 install) || exit 1
 fi
 
 #exit
 
 if [ ! -e gimp ]; then
-	(git clone -b GIMP_2_10_6 http://git.gnome.org/browse/gimp) || exit 1
+	(git clone -b GIMP_2_10_12 http://git.gnome.org/browse/gimp) || exit 1
 	(cd gimp && patch -p1 < "../../gimp-icons-osx.patch") || exit 1
 	(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./autogen.sh --disable-gtk-doc --disable-python --enable-sse=no --prefix=${PREFIX} && make -j 3 install) || exit 1
 #(cd gimp && TIFF_LIBS="-ltiff -ljpeg -lz" JPEG_LIBS="-ljpeg" ./configure --disable-gtk-doc --enable-sse=no --prefix=${PREFIX} && make -j 1 install) || exit 1
