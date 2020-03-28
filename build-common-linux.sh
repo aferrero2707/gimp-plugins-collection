@@ -14,11 +14,11 @@ fi
 rm -rf /usr/local/gimp
 ln -s "$(pwd)/squashfs-root/usr" /usr/local/gimp || exit 1
 
-echo "ls -l /usr/local/gimp"
-ls -l /usr/local/gimp
+echo "ls -l /usr/local/gimp/"
+ls -l /usr/local/gimp/
 
-echo "ls -l /usr/local/gimp/lib"
-ls -l /usr/local/gimp/lib
+echo "ls -l /usr/local/gimp/lib/"
+ls -l /usr/local/gimp/lib/
 
 cd /usr/local/gimp/lib
 for L in $(find . -type f -name "*.so.*"); do
@@ -32,5 +32,5 @@ for L in $(find . -type f -name "*.so.*"); do
 done
 
 mkdir -p /usr/local/lib/pkgconfig
-ln -s libbabl*.so libgegl*.so* libgimp*.so* /usr/local/lib
-ln -s pkgconfig/*.pc /usr/local/lib/pkgconfig
+#ln -s libbabl*.so libgegl*.so* libgimp*.so* /usr/local/lib
+#ln -s pkgconfig/*.pc /usr/local/lib/pkgconfig
