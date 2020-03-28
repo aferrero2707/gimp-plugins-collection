@@ -20,7 +20,8 @@ fi
 (cd liblqr && ./configure --prefix=/usr/local && make -j 2 && make install) || exit 1
 
 if [ ! -e gimp-lqr-plugin ]; then
-	(git clone https://github.com/carlobaldassi/gimp-lqr-plugin.git) || exit 1
+	#(git clone https://github.com/carlobaldassi/gimp-lqr-plugin.git) || exit 1
+	(git clone https://github.com/aferrero2707/gimp-lqr-plugin.git) || exit 1
 fi
 (cd gimp-lqr-plugin && ./configure --prefix=/usr/local && make -j 2 && make install) || exit 1
 
