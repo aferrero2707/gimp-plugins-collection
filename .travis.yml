@@ -3,7 +3,7 @@ language: generic
 os: linux
 
 env:
-  - TARGET_PLUGIN=LiquidRescale
+  - TARGET_PLUGIN=ResynthesizerPlugin
 
 before_install:
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}"  photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
