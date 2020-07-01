@@ -3,12 +3,8 @@ language: generic
 os: linux
 
 env:
-<<<<<<< HEAD
-  - TARGET_PLUGIN=LiquidRescale
-  - GIMP_VERSION=2.10
-=======
   - TARGET_PLUGIN=ResynthesizerPlugin
->>>>>>> f4c3ad8df80566a701dde92f76467cb6cfb8007b
+  - GIMP_VERSION=2.10
 
 before_install:
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}" -e GIMP_VERSION="${GIMP_VERSION}" photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
