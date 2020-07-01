@@ -3,8 +3,12 @@ language: generic
 os: linux
 
 env:
+<<<<<<< HEAD
   - TARGET_PLUGIN=GMIC
   - GIMP_VERSION=2.10
+=======
+  - TARGET_PLUGIN=PhFGimp
+>>>>>>> ed112db4c1cc03b888904c538cf44562192d67e7
 
 before_install:
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}" -e GIMP_VERSION="${GIMP_VERSION}" photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
