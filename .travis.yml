@@ -3,8 +3,12 @@ language: generic
 os: linux
 
 env:
+<<<<<<< HEAD
   - TARGET_PLUGIN=ResynthesizerPlugin
   - GIMP_VERSION=2.10
+=======
+  - TARGET_PLUGIN=NUFraw
+>>>>>>> 8fd981fca0844d76ed7ac541cc31b806900b9d39
 
 before_install:
   - sudo docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}" -e GIMP_VERSION="${GIMP_VERSION}" photoflow/docker-centos7-gimp bash /sources/travis/build-linux.sh
