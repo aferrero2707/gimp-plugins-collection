@@ -1,8 +1,8 @@
 #! /bin/bash
 
-#BABL_GIT_TAG=BABL_0_1_56
-#GEGL_GIT_TAG=GEGL_0_4_8
-#GIMP_GIT_TAG=GIMP_2_10_6
+TARGET_PLUGIN=GMIC
+#GIMP_VERSION=2.10
+GIMP_VERSION=2.99
 
-docker run --rm -it -v $(pwd):/sources -e "BABL_GIT_TAG=$BABL_GIT_TAG" -e "GEGL_GIT_TAG=$GEGL_GIT_TAG" -e "GIMP_GIT_TAG=$GIMP_GIT_TAG" photoflow/docker-centos7-gimp bash #/sources/ci/appimage-centos7.sh
+docker run -it -v $(pwd):/sources -e TARGET_PLUGIN="${TARGET_PLUGIN}" -e GIMP_VERSION="${GIMP_VERSION}" photoflow/docker-centos7-gimp bash #/sources/travis/build-linux.sh
 
