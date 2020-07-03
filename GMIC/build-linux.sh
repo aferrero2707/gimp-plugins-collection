@@ -7,7 +7,8 @@ gimplibdir=$(pkg-config --variable=gimplibdir gimp-2.0)
 echo "gimplibdir: $gimplibdir"
 if [ -z "$gimplibdir" ]; then exit 1; fi
 
-yum install -y qt5-qtbase-devel qt5-linguist libcurl-devel
+yum update -y || exit 1
+yum install -y qt5-qtbase-devel qt5-linguist libcurl-devel || exit 1
 
 
 if [ ! -e gmic-qt ]; then
@@ -47,9 +48,9 @@ cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
 
 
 # enter the AppImage bundle
-mkdir -p "$APPDIR/gmic_qt/plug-ins"
-cd "$APPDIR/gmic_qt" || exit 1
-cp -a /work/build/gmic-qt/gmic_gimp_qt plug-ins || exit 1
+mkdir -p "$APPDIR/GMIC/plug-ins/gmic_gimp_qt"
+cd "$APPDIR/GMIC" || exit 1
+cp -a /work/build/gmic-qt/gmic_gimp_qt plug-ins/gmic_gimp_qt || exit 1
 
 
 
@@ -67,7 +68,7 @@ copy_deps2; copy_deps2; copy_deps2;
 delete_blacklisted2
 
 
-cd "$APPDIR/gmic_qt" || exit 1
+cd "$APPDIR/GMIC" || exit 1
 mkdir -p scripts || exit 1
 cp -a "${STARTUP_SCRIPT}" scripts/startup.sh || exit 1
 
@@ -75,7 +76,7 @@ echo "export GIMP_GMIC_PLUGIN_EXISTS=1" > scripts/set_exists.sh
 echo 'if [ x"${GIMP_GMIC_PLUGIN_EXISTS}" = "x1" ]; then exit 1; fi; exit 0;' > scripts/check_exists.sh
 
 
-cd "$APPDIR/gmic_qt/usr/lib" || exit 1
+cd "$APPDIR/GMIC/usr/lib" || exit 1
 for L in $(find . -name "*.so*"); do
 
 	echo "checking $GIMP_PREFIX/lib/$L"

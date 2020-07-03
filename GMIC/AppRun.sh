@@ -9,5 +9,5 @@ DESTDIR="$HOME/.config/GIMP-AppImage/2.10/plug-ins"
 if [ $# -gt 0 ]; then DESTDIR="$1"; fi
 mkdir -p "$DESTDIR" || exit 1
 
-rm -rf "$DESTDIR/gmic_qt"
-cp -a "$APPDIR/gmic_qt" "$DESTDIR"
+rm -rf "$DESTDIR/GMIC"
+cp -a "$APPDIR/GMIC" "$DESTDIR"
