@@ -26,13 +26,15 @@ export APPROOT=/work/PhFGimp-plugin
 export APP="PhFGimp"
 export APPDIR="${APPROOT}/$APP.AppDir"
 (rm -rf "${APPROOT}" && mkdir -p "${APPROOT}/$APP.AppDir") || exit 1
-cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
+cp /work/appimage-helper-scripts/excludelist "${APPROOT}" || exit 1
 
 
 # enter the AppImage bundle
-mkdir -p "$APPDIR/PhFGimp/plug-ins"
+mkdir -p "$APPDIR/PhFGimp/plug-ins/file-photoflow" || exit 1
+mkdir -p "$APPDIR/PhFGimp/plug-ins/phf_gimp" || exit 1
 cd "$APPDIR/PhFGimp" || exit 1
-cp -a /work/build/PhFGimp/build/file-photoflow /work/build/PhFGimp/build/phf_gimp plug-ins || exit 1
+cp -a /work/build/PhFGimp/build/file-photoflow plug-ins/file-photoflow/ || exit 1
+cp -a /work/build/PhFGimp/build/phf_gimp plug-ins/phf_gimp/ || exit 1
 
 copy_deps2; copy_deps2; copy_deps2;
 
