@@ -41,10 +41,10 @@ cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
 
 
 # enter the AppImage bundle
-mkdir -p "$APPDIR/${PLUGIN}/plug-ins"
+mkdir -p "$APPDIR/${PLUGIN}/plug-ins/gimp-lqr-plugin"
 cd "$APPDIR/${PLUGIN}" || exit 1
-cp -a "$gimplibdir/plug-ins"/gimp-lqr-plugin plug-ins
-cp -a "$gimplibdir/plug-ins"/plug_in_lqr_iter plug-ins
+cp -a "$gimplibdir/plug-ins"/gimp-lqr-plugin plug-ins/gimp-lqr-plugin
+cp -a "$gimplibdir/plug-ins"/plug_in_lqr_iter plug-ins/gimp-lqr-plugin
 
 copy_deps3; copy_deps2; copy_deps2;
 

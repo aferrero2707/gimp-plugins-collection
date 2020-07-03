@@ -10,4 +10,4 @@ if [ $# -gt 0 ]; then DESTDIR="$1"; fi
 mkdir -p "$DESTDIR" || exit 1
 
 rm -rf "$DESTDIR/LiquidRescale"
-cp -a "$APPDIR/LiquidRescale" "$DESTDIR" || exit 1
+cp -a "$APPDIR/LiquidRescale" "$DESTDIR"
