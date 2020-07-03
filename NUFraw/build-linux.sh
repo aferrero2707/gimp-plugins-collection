@@ -41,13 +41,13 @@ export APPROOT=/work/${PLUGIN}-plugin
 export APP="${PLUGIN}"
 export APPDIR="${APPROOT}/$APP.AppDir"
 (rm -rf "${APPROOT}" && mkdir -p "${APPROOT}/$APP.AppDir") || exit 1
-cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
+cp /work/appimage-helper-scripts/excludelist "${APPROOT}" || exit 1
 
 
 # enter the AppImage bundle
-mkdir -p "$APPDIR/${PLUGIN}/plug-ins"
+mkdir -p "$APPDIR/${PLUGIN}/plug-ins/nufraw-gimp" || exit 1
 cd "$APPDIR/${PLUGIN}" || exit 1
-cp -a /usr/local/lib/gimp/2.0/plug-ins/nufraw-gimp plug-ins
+cp -a /usr/local/lib/gimp/2.0/plug-ins/nufraw-gimp plug-ins/nufraw-gimp || exit 1
 #cp -a "$gimplibdir/plug-ins"/nufraw-gimp plug-ins
 
 copy_deps2; copy_deps2; copy_deps2;

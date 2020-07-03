@@ -10,4 +10,4 @@ if [ $# -gt 0 ]; then DESTDIR="$1"; fi
 mkdir -p "$DESTDIR" || exit 1
 
 rm -rf "$DESTDIR/NUFraw"
-cp -a "$APPDIR/NUFraw" "$DESTDIR" || exit 1
+cp -a "$APPDIR/NUFraw" "$DESTDIR"
