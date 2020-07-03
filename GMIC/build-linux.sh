@@ -44,11 +44,11 @@ export APPROOT=/work/gmic-plugin
 export APP="GMIC"
 export APPDIR="${APPROOT}/$APP.AppDir"
 (rm -rf "${APPROOT}" && mkdir -p "${APPROOT}/$APP.AppDir") || exit 1
-cp /work/appimage-helper-scripts/excludelist "${APPROOT}"
+cp /work/appimage-helper-scripts/excludelist "${APPROOT}" || exit 1
 
 
 # enter the AppImage bundle
-mkdir -p "$APPDIR/GMIC/plug-ins/gmic_gimp_qt"
+mkdir -p "$APPDIR/GMIC/plug-ins/gmic_gimp_qt" || exit 1
 cd "$APPDIR/GMIC" || exit 1
 cp -a /work/build/gmic-qt/gmic_gimp_qt plug-ins/gmic_gimp_qt || exit 1
 
