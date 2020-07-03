@@ -3,7 +3,7 @@ language: generic
 os: linux
 
 env:
-  - TARGET_PLUGIN=GMIC
+  - TARGET_PLUGIN=PhFGimp
   - GIMP_VERSION=2.10
 
 before_install:
